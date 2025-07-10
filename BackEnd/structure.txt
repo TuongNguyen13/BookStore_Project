@@ -1,0 +1,41 @@
+my-fullstack-project/
+├── client/           # Thư mục cho ứng dụng Frontend (HTML/CSS/JavaScript thuần)
+│   ├── public/       # (Tùy chọn: Dùng cho các tài nguyên không cần xử lý)
+│   │   └── index.html
+│   ├── assets/
+│   │   ├── css/
+│   │   │   ├── style.css
+│   │   │   └── reset.css
+│   │   ├── images/
+│   │   │   └── ...
+│   │   └── js/
+│   │       └── script.js  # JavaScript thuần để gửi/nhận dữ liệu từ API
+│   ├── index.html    # Trang HTML chính của bạn
+│   └── README.md
+│
+├── server/           # Thư mục cho ứng dụng Backend (Node.js + Express.js/NestJS)
+│   ├── config/       # Cấu hình cơ sở dữ liệu, biến môi trường
+│   │   ├── db.config.js  # Thông tin kết nối SQL Server
+│   │   └── ...
+│   ├── controllers/  # Logic xử lý các yêu cầu HTTP (routes)
+│   │   ├── authController.js
+│   │   └── productController.js
+│   ├── models/       # Định nghĩa cấu trúc dữ liệu, tương tác với DB (ví dụ: Sequelize ORM)
+│   │   ├── user.model.js
+│   │   └── product.model.js
+│   ├── routes/       # Định nghĩa các API endpoint
+│   │   ├── authRoutes.js
+│   │   └── productRoutes.js
+│   ├── services/     # Logic nghiệp vụ, thường gọi các hàm từ models
+│   │   ├── authService.js
+│   │   └── productService.js
+│   ├── utils/        # Các hàm tiện ích chung
+│   │   └── helpers.js
+│   ├── app.js        # File khởi tạo server chính
+│   ├── package.json
+│   ├── .env          # Biến môi trường (port, chuỗi kết nối DB, v.v.)
+│   └── README.md
+│
+├── .gitignore
+├── package.json      # (Tùy chọn: Để chạy cả FE/BE đồng thời bằng `concurrently`)
+└── README.md
