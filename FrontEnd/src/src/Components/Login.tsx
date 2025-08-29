@@ -27,11 +27,18 @@ function Login() {
         },
         body: JSON.stringify({ username, password }),
       });
+
+      if (!username || !password) {
+        setError('Vui lòng nhập đầy đủ thông tin');
+        setLoading(false);
+        return;
+      }
+
       if (!response.ok) {
-        throw new Error('Login failed');
+        throw new Error('Đăng nhập thất bại');
       }
       const data: LoginRespose = await response.json();
-      console.log('Login successful:', data);
+      console.log('Đăng nhập thành công:', data);
       localStorage.setItem('token', data.token);
       navigator('/dashboard');
       // Handle successful login (e.g., store token, redirect)
@@ -43,6 +50,7 @@ function Login() {
   }
 
   return <div className='login-container'>
+    
     <form action="POST">
       <div className=' header-login'>
         <h2>Đăng nhập</h2>
