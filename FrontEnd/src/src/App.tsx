@@ -1,16 +1,16 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React from 'react'
 import Login from './Components/Login'
 import './App.css'
+import { Routes, Route } from 'react-router-dom'
+import Order from './Components/order'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-    <Login></Login>
-    </>
+   <Routes>
+    <Route path='/' element={<Login/>}/>
+    <Route path='/order' element={<Order/>}/>
+   </Routes>
+    
   )
 }
 

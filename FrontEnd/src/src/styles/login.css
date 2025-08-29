@@ -1,12 +1,16 @@
+
 .login-container {
+    display: flex;
     width:100%;
-    max-width: 1000px;
+    max-width: 600px;
     margin: 100px auto;
+    flex-direction: column;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: rgba(215, 203, 203, 0.7);
+    text-align: center;
 }
 .header-login {
     margin-bottom: 20px;
@@ -51,7 +55,6 @@
     text-align: center;
     justify-content: center;
     text-align: center;
-
 }
 
 button {
@@ -64,6 +67,7 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  width: 30%;
   
 }
 button:hover {
