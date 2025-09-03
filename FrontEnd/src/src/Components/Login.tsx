@@ -1,8 +1,7 @@
 import React from 'react';
 import '../styles/login.css'
 import { useNavigate } from 'react-router-dom';
-interface LoginRespose
-{
+interface LoginRespose {
   token: string;
   userId: string;
   username: string;
@@ -10,11 +9,11 @@ interface LoginRespose
 
 function Login() {
   const navigator = useNavigate();
- const [username, setUsername] = React.useState<string>('');
+  const [username, setUsername] = React.useState<string>('');
   const [password, setPassword] = React.useState<string>('');
   const [error, setError] = React.useState<string>('');
   const [loading, setLoading] = React.useState<boolean>(false);
-  
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -49,25 +48,29 @@ function Login() {
     }
   }
 
-  return <div className='login-container'>
-    
-    <form action="POST">
-      <div className=' header-login'>
-        <h2>Đăng nhập</h2>
+  return (
+    <div className='login-background'>
+      <div className='login-container'>
+        <form action="POST">
+          <div className=' header-login'>
+            <h2>Đăng nhập</h2>
+          </div>
+          <div className='login-input'>
+            <div className='input-username'>
+              <label htmlFor="userName">Tên đăng nhập: </label>
+              <input type="text" id="userName" name="userName" />
+            </div>
+            <div className='input-password'>
+              <label htmlFor="password">Mật khẩu: </label>
+              <input type="password" id="password" name="password" />
+            </div>
+          </div>
+          <div className='login-button'>
+            <button type="submit">Đăng nhập</button>
+          </div>
+        </form>
       </div>
-      <div className='login-input'>
-        <div className='input-username'>
-          <label htmlFor="userName">Tên đăng nhập: </label>
-          <input type="text" id="userName" name="userName" />
-        </div>
-        <div className='input-password'>
-          <label htmlFor="password">Mật khẩu: </label>
-          <input type="password" id="password" name="password" />
-        </div>
-      </div>
-      <div className='login-button'>
-        <button type="submit">Đăng nhập</button>
-      </div>
-    </form>
-  </div>;
+    </div>
+  );
+
 } export default Login;
