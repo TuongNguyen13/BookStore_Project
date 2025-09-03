@@ -49,3 +49,39 @@
 .search-container button:hover {
     background: rgba(128, 128, 128, 0.8);
 }
+
+.order-list {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.order-item {
+    background: rgba(235, 233, 233, 0.8);
+    border-radius: 8px;
+    padding: 10px 15px;
+    box-shadow: 0 2px 6px rgba(11, 10, 10, 0.1);
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+.order-item:hover {
+    transform: translateY(-5px);
+}
+
+.order-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    flex-wrap: wrap;
+    border-radius: 8px;
+    margin-bottom: 5px auto;
+}
+
+.order-item span {
+    display: block;
+    font-size: 20px;
+    color: black;
+    margin-bottom: 5px;
+}
