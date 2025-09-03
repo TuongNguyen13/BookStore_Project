@@ -1,17 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.login-background {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../src/assets/thiet-ke-nha-sach-19.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: hidden;
+}
 
 .login-container {
     display: flex;
-    width:100%;
+    justify-content: center;
+    width: 100%;
     max-width: 600px;
     margin: 100px auto;
     flex-direction: column;
     padding: 20px;
-    border: 1px solid #ccc;
+    border: none;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: rgba(215, 203, 203, 0.7);
     text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
 }
+
 .header-login {
     margin-bottom: 20px;
     text-align: center;
@@ -19,61 +40,63 @@
     color: black;
 }
 
-.login-input{
+.login-input {
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
     font-family: Arial, Helvetica, sans-serif;
 }
+
 .login-input label {
     margin-bottom: 5px;
     font-size: 1.2em;
     color: black;
-   
+
 }
-.login-input .input-password
-{
+
+.login-input .input-password {
     margin-top: 10px;
 }
 
-.login-input input
-{
+.login-input input {
     padding: 10px;
     font-size: 1em;
     border-radius: 4px;
-    border: 1px solid #ccc;
+    border: none;
     width: 55%;
     background-color: #ccc;
     color: #000;
 }
-.login-input .input-password input
-{
-   margin-left: 50px;
+
+.login-input .input-password input {
+    margin-left: 50px;
 }
-.login-button
-{
+
+.login-button {
     text-align: center;
     justify-content: center;
     text-align: center;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-  width: 30%;
-  
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    transition: border-color 0.25s;
+    width: 30%;
+
 }
+
 button:hover {
-  border-color: #646cff;
+    border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+    outline: 4px auto -webkit-focus-ring-color;
 }
