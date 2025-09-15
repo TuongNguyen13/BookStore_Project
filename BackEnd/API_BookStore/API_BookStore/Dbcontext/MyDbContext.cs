@@ -5,14 +5,9 @@ namespace API_BookStore.Dbcontext
 {
     public class MyDbContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server = DESKTOP-TUONG; Database = Book_Manage; User Id= sa; Password = 123");
-        }
+        public MyDbContext(DbContextOptions<MyDbContext> options) : base(options) { }
+        public DbSet<Account> Accounts { get; set; }
 
-        DbSet<Account> Accounts { get; set; }
-
-        
     }
 
 }
