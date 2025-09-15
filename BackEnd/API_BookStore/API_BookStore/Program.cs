@@ -1,10 +1,21 @@
+using API_BookStore.Dbcontext;
+using API_BookStore.Interfaces;
+using API_BookStore.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Runtime.CompilerServices;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<MyDbContext>
+    (opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefautConnection")));
 var key = Encoding.ASCII.GetBytes(builder.Configuration["Jwt Key"]);
+
+// Add builder services
+
+builder.Services.AddScoped<IAccount, AccountService>();
+builder.Services.AddScoped<IAuthAccount,AuthLoginService>();
 
 // Add jwt auth
 

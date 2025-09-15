@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using API_BookStore.Auth;
+using API_BookStore.Services;
 using API_BookStore.Models;
 
 namespace API_BookStore.Controllers
@@ -9,16 +9,30 @@ namespace API_BookStore.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-        private readonly JwtAuth _jwtAuth;
-        public LoginController(JwtAuth jwtAuth) 
+        private readonly AuthLoginService _jwtAuth;
+        public LoginController(AuthLoginService jwtAuth)
         {
             _jwtAuth = jwtAuth;
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] AccountModel accountModel)
+        public async Task<IActionResult> Login([FromBody] AccountLoginModel accountModel)
         {
-            if( accountModel.UserName = )
+            var token = await _jwtAuth.AuthLoginAsync(accountModel.UserName, accountModel.Pass);
+            if (token == null)
+            {
+                return Ok(new
+                {
+                    status = -1,
+                    message = "Sai tài khoản hoặc mật khẩu"
+                }
+                   );
+            }
+            return Ok(new
+            {
+                status = 1,
+                message = token.ToString()
+            });
         }
     }
 }
