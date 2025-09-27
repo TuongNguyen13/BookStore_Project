@@ -20,14 +20,14 @@ namespace API_BookStore.Services
         public async Task<string?> AuthLoginAsync(string username, string password)
         {
             var user = await _account.GetAccountInfor(username);
-            if (user  == null)
+            if (user  == null || user.Pass != password)
             {
                 return null;
             }
-            if (user.Pass!= password)
-            {
-                return null;
-            }    
+            //if (user.Pass!= password)
+            //{
+            //    return null;
+            //}    
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
 

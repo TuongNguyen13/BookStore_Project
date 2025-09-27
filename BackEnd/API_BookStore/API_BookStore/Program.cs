@@ -10,12 +10,12 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<MyDbContext>
     (opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefautConnection")));
-var key = Encoding.ASCII.GetBytes(builder.Configuration["Jwt Key"]);
+var key = Encoding.ASCII.GetBytes(builder.Configuration["Jwt:Key"]);
 
 // Add builder services
 
 builder.Services.AddScoped<IAccount, AccountService>();
-builder.Services.AddScoped<IAuthAccount,AuthLoginService>();
+builder.Services.AddScoped<IAuthAccount, AuthLoginService>();
 
 // Add jwt auth
 

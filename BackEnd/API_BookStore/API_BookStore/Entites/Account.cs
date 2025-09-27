@@ -1,11 +1,14 @@
-﻿namespace API_BookStore.Entites
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace API_BookStore.Entites
 {
+    [Table("Account")]
     public class Account
     {
-        public int Id { get; set; }
+        public int ID { get; set; }
         public string Username { get; set; }
         public string Pass { get; set; }
-        public string EmployeeID { get; set; }
+        public int EmployeeID { get; set; }
 
     }
 }
