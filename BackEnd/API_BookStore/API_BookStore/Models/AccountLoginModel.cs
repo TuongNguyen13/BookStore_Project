@@ -4,7 +4,7 @@
     {
         public string UserName { get; set; }
         public string Pass { get; set; }
-        public string EmployeeeId { get; set; }
+        public int EmployeeId { get; set; }
 
     }
 }

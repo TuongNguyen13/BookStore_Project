@@ -7,14 +7,21 @@ namespace API_BookStore.Services
     public class AccountService : IAccount
     {
         private readonly MyDbContext _context;
-        private AccountService( MyDbContext context) 
+        public AccountService( MyDbContext context) 
         {
            _context = context;  
         }
 
         public async Task<Account?> GetAccountInfor(string username)
         {
-            return await _context.Accounts.FirstOrDefaultAsync(u=> u.Username == username);
+            return await _context.Accounts.AsNoTracking().Where(u=> u.Username == username).
+                Select(u => new Account
+                {
+                    Username = u.Username,
+                    Pass = u.Pass,
+                    EmployeeID = u.EmployeeID
+                })
+                .SingleOrDefaultAsync();
         }
 
 
