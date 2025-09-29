@@ -19,7 +19,7 @@ namespace API_BookStore.Services
                 {
                     Username = u.Username,
                     Pass = u.Pass,
-                    EmployeeID = u.EmployeeID
+                    //EmployeeID = u.EmployeeID
                 })
                 .SingleOrDefaultAsync();
         }
