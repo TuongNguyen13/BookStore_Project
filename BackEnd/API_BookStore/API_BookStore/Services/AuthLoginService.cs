@@ -31,7 +31,7 @@ namespace API_BookStore.Services
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
 
-            var claims = new List<Claim>
+            var claims = new[]
             {
                 new Claim(ClaimTypes.Name, user.Username),
                 new Claim("EmployeeId", user.EmployeeID.ToString())

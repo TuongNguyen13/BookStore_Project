@@ -1,22 +1,35 @@
+body{
+    background-color: rgba(255, 255, 255, 0.6); 
+}
 .order-container {
-    max-width: 1500px;
-    height: 86vh;
-    margin: 5px auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px 10px;
+    width: 80%;
+    max-width: 1800px;
+    height: 80%;
+    max-height: 100vh;
     padding: 20px;
     background: rgba(255, 255, 255, 0.6);
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-.search-container {
+ .order-container .search-container {
     display: flex;
     align-items: center;
+    width: 100%;
     background: rgba(255, 255, 255) ;
-    border-radius: 8px;
+    border-radius: 25px;
     padding: 5px 10px;
     box-shadow: 0 2px 6px rgba(159, 155, 155, 0.2);
     max-width: 900px;
-    margin: 5px auto;
+    margin: 0 auto 10px auto;
     font-size: 18px;
 }
 
@@ -34,7 +47,7 @@
 .search-container button {
     margin-left: 10px;
     border: none;
-    background: silver;
+    background: blue;
     color: white;
     padding: 10px 15px;
     border-radius: 8px;
@@ -47,34 +60,35 @@
 
 
 .search-container button:hover {
-    background: rgba(128, 128, 128, 0.8);
+    background: darkblue;
 }
 
 .order-list {
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 170px)); 
+  gap: 15px; /* khoảng cách giữa các item */
 }
 
 .order-item {
-    background: rgba(235, 233, 233, 0.8);
-    border-radius: 8px;
-    padding: 10px 15px;
-    box-shadow: 0 2px 6px rgba(11, 10, 10, 0.1);
-    transition: transform 0.2s;
-    cursor: pointer;
+  background: rgba(235, 233, 233, 0.8);
+  border-radius: 8px;
+  padding: 10px 15px;
+  box-shadow: 0 2px 6px rgba(11, 10, 10, 0.1);
+  transition: transform 0.2s;
+  cursor: pointer;
 }
+
 .order-item:hover {
-    transform: translateY(-5px);
+  transform: scale(1.03);
 }
 
 .order-item img {
-    display: block;
+    /* display: block;   */
     width: 100%;
+    max-width: cover;
     height: auto;
-    object-fit: cover;
-    flex-wrap: wrap;
+    /* object-fit: cover; */
+    /* flex-wrap: wrap; */
     border-radius: 8px;
     margin-bottom: 5px auto;
 }
