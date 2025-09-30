@@ -2,8 +2,10 @@ using API_BookStore.Dbcontext;
 using API_BookStore.Interfaces;
 using API_BookStore.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.Data;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -11,6 +13,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<MyDbContext>
     (opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefautConnection")));
 var key = Encoding.ASCII.GetBytes(builder.Configuration["Jwt:Key"]);
+
+builder.Services.AddScoped<IDbConnection>(sp =>
+    new SqlConnection(builder.Configuration.GetConnectionString("DefautConnection"))
+);
 
 // Add builder services
 

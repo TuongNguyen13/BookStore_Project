@@ -53,7 +53,7 @@ function Login() {
   return (
     <div className='login-background'>
       <div className='login-container'>
-        <form onSubmit={handleSubmit}>
+        <form method='POST'>
           <div className='header-login'>
             <h2>Đăng nhập</h2>
           </div>
@@ -77,9 +77,9 @@ function Login() {
               />
             </div>
           </div>
-          {error && <p style={{ color: 'red' }}>{error}</p>}
+           { error && <p style={{ color: 'red' }}>{error}</p>}
           <div className='login-button'>
-            <button type="submit" disabled={loading}>
+            <button type="submit" disabled={loading} onClick={handleSubmit}>
               {loading ? 'Đang đăng nhập...' : 'Đăng nhập'}
             </button>
           </div>
