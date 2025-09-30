@@ -3,6 +3,7 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using API_BookStore.Interfaces;
+using API_BookStore.Models;
 
 namespace API_BookStore.Services
 {
@@ -17,25 +18,39 @@ namespace API_BookStore.Services
             _configuration = configuration;
 
         }
-        public async Task<string?> AuthLoginAsync(string username, string password)
+
+        public static class CustomClaimTypes
         {
-            var user = await _account.GetAccountInfor(username);
-            if (user  == null || user.Pass != password)
+            public const string EmployeeCode = "EmployeeCode";
+            public const string EmployeeName = "EmployeeName";
+        }
+
+        public async Task<string?> AuthLoginAsync(AccountRequestModel accountRequestModel)
+        {
+            var user = await _account.GetAccountInfor(accountRequestModel.userName, accountRequestModel.pass);
+            if (user == null)
             {
                 return null;
             }
-            //if (user.Pass!= password)
-            //{
-            //    return null;
-            //}    
+
+            var loginModel = new AccountLoginModel
+            {
+                UserName = user.UserName,
+                EmployeeCode = user.EmployeeCode,
+                EmployeeName = user.EmployeeName
+            };
+
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
 
+
             var claims = new[]
             {
-                new Claim(ClaimTypes.Name, user.Username),
-                new Claim("EmployeeId", user.EmployeeID.ToString())
+                 new Claim(ClaimTypes.Name, loginModel.UserName),
+                 new Claim(CustomClaimTypes.EmployeeCode, loginModel.EmployeeCode),
+                 new Claim(CustomClaimTypes.EmployeeName, loginModel.EmployeeName)
             };
+
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
@@ -45,13 +60,16 @@ namespace API_BookStore.Services
                 (int.Parse(_configuration["Jwt:ExpirationMinutes"])),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key)
                 , SecurityAlgorithms.HmacSha256Signature),
-                Issuer = _configuration["Jwt:Issuer"],        // thêm
-                Audience = _configuration["Jwt:Audience"]     // thêm
+                Issuer = _configuration["Jwt:Issuer"],
+                Audience = _configuration["Jwt:Audience"]
             };
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
 
         }
+
+
+
     }
 }

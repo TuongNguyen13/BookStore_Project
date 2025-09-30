@@ -18,9 +18,9 @@ namespace API_BookStore.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login([FromBody] AccountLoginModel accountModel)
+        public async Task<IActionResult> Login([FromBody] AccountRequestModel accountRequestModel)
         {
-            var token = await _jwtAuth.AuthLoginAsync(accountModel.UserName, accountModel.Pass);
+            var token = await _jwtAuth.AuthLoginAsync(accountRequestModel);
             var sw = new Stopwatch();
             sw.Start();
 

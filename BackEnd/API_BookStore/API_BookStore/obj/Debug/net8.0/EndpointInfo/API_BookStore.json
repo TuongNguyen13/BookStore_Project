@@ -14,17 +14,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AccountLoginModel"
+                "$ref": "#/components/schemas/AccountRequestModel"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/AccountLoginModel"
+                "$ref": "#/components/schemas/AccountRequestModel"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/AccountLoginModel"
+                "$ref": "#/components/schemas/AccountRequestModel"
               }
             }
           }
@@ -39,7 +39,7 @@
   },
   "components": {
     "schemas": {
-      "AccountLoginModel": {
+      "AccountRequestModel": {
         "type": "object",
         "properties": {
           "userName": {
@@ -48,11 +48,6 @@
           },
           "pass": {
             "type": "string",
-            "nullable": true
-          },
-          "employeeId": {
-            "type": "integer",
-            "format": "int32",
             "nullable": true
           }
         },

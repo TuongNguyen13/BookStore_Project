@@ -1,35 +1,43 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Dapper;
+using System.Data;
 using API_BookStore.Interfaces;
 using API_BookStore.Dbcontext;
-using API_BookStore.Entites;
+using API_BookStore.Models;
+
+
 namespace API_BookStore.Services
 {
     public class AccountService : IAccount
     {
         private readonly MyDbContext _context;
-        public AccountService( MyDbContext context) 
+        private readonly IDbConnection _dbConnection;
+
+        public AccountService( MyDbContext context, IDbConnection dbConnection) 
         {
-           _context = context;  
+           _context = context;
+            _dbConnection = dbConnection;
         }
 
-        public async Task<Account?> GetAccountInfor(string username)
+        public async Task<AccountLoginModel?> GetAccountInfor(string username, string password)
         {
-            return await _context.Accounts.AsNoTracking().Where(u=> u.Username == username).
-                Select(u => new Account
-                {
-                    Username = u.Username,
-                    Pass = u.Pass,
-                    //EmployeeID = u.EmployeeID
-                })
-                .SingleOrDefaultAsync();
+            string sql = @"SELECT a.Username, e.EmployeeCode, e.EmployeeName
+                   FROM Account AS a
+                   JOIN Employee AS e ON a.EmployeeId = e.ID
+                   WHERE a.Username = @username AND a.Pass = @password";
+
+            return await _dbConnection.QueryFirstOrDefaultAsync<AccountLoginModel>(
+                sql,
+                new { username, password }
+            );
         }
 
 
-        public async Task CreateTokenLogin(Account account)
-        {
-            _context.Accounts.Add(account);
-            await _context.SaveChangesAsync();
-        }
+
+        //public async Task CreateTokenLogin(Account account)
+        //{
+        //    _context.Accounts.Add(account);
+        //    await _context.SaveChangesAsync();
+        //}
 
 
     }

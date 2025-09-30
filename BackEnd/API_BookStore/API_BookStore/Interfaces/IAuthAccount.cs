@@ -1,7 +1,8 @@
-﻿namespace API_BookStore.Interfaces
+﻿using API_BookStore.Models;
+namespace API_BookStore.Interfaces
 {
     public interface IAuthAccount
     {
-        Task<string?> AuthLoginAsync (string username, string password);
+        Task<string?> AuthLoginAsync (AccountRequestModel accountRequestModel);
     }
 }
