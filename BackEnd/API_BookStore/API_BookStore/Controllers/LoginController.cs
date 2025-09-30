@@ -45,7 +45,7 @@ namespace API_BookStore.Controllers
             {
                 status = 1,
                 message = "Đăng nhập thành công",
-                token = token.ToString()
+                token = "Đã sinh ra token"
             });
         }
     }
