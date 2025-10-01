@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddUserSecrets<Program>();
 builder.Services.AddDbContext<MyDbContext>
     (opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefautConnection")));
 var key = Encoding.ASCII.GetBytes(builder.Configuration["Jwt:Key"]);
