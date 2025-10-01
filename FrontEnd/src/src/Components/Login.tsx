@@ -30,12 +30,6 @@ function Login() {
         body: JSON.stringify({ username, pass,employeeId }), // ✅ Gửi đúng dữ liệu
       });
 
-      if(username === '' || pass === ''){
-        setError('Vui lòng nhập đầy đủ thông tin');
-        setLoading(false);
-        return;
-      }
-
       if (!response.ok) {
         throw new Error('Đăng nhập thất bại');
       }
@@ -83,12 +77,12 @@ function Login() {
               />
             </div>
           </div>
+           { error && <p style={{ color: 'red' }}>{error}</p>}
           <div className='login-button'>
             <button type="submit" disabled={loading} onClick={handleSubmit}>
               {loading ? 'Đang đăng nhập...' : 'Đăng nhập'}
             </button>
           </div>
-           { error && <p style={{ color: 'red' }}>{error}</p>}
         </form>
       </div>
     </div>
