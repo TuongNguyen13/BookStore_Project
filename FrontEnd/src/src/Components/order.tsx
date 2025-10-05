@@ -1,11 +1,30 @@
 import '../styles/order.css'
+import React, { useEffect } from 'react'
 function order() {
+  useEffect(() => {
+    document.title = 'Đơn đặt hàng'
+  }, [])
   return (
     <div>
+
       <div className='order-container'>
-        <div className="search-container">
+        <div>
+          <div className="search-container">
           <input type="text" placeholder="Nhập từ khóa tìm kiếm" />
           <button>Tìm kiếm</button>
+        </div>
+        <div>
+          <button>Thêm sách</button>
+        </div>
+        </div>
+       
+        <div className='order-nav'>
+            <ul className='order-nav-list'>
+              <li><a href="/Dashboard">Trang chủ</a></li>
+              <li><a href="/Infomation">Thông tin cá nhân</a></li>
+              <li><a href="/Hr">Quản lý nhân viên</a></li>
+              <li><a href="/Suplier">Kho hàng</a></li>
+            </ul>
         </div>
         <div className="order-list">
           <div className='order-item'>
@@ -22,7 +41,7 @@ function order() {
             <br />
             <span> 100000&#8363;</span>
             <br />
-         </div>
+          </div>
         </div>
       </div>
     </div>
