@@ -149,6 +149,8 @@ CREATE TABLE Account (
     CONSTRAINT fk_Account_Employee FOREIGN KEY (EmployeeID) 
         REFERENCES Employee(ID)
 );
+ALTER TABLE Account ADD CONSTRAINT UQ_Account_EmployeeID UNIQUE (EmployeeID);
+
 
 -- Nhà cung cấp
 CREATE TABLE Supplier (
@@ -276,3 +278,13 @@ CREATE TABLE Payments (
     Amount float default 0 NOT NULL,
     CONSTRAINT fk_Payment_Order FOREIGN KEY (OrderID) REFERENCES Orders(ID)
 );
+
+select * from Account
+SELECT MIN(ID) AS MinID, MAX(ID) AS MaxID, COUNT(*) AS TotalRows
+FROM Account;
+
+
+
+
+
+
