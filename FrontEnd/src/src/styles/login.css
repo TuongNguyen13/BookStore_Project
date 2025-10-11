@@ -100,3 +100,26 @@ button:focus,
 button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
 }
+ @media screen and (max-width: 600px) and (min-width: 300px) {
+    .login-container {
+        padding: 10px;
+        margin: 50px auto;
+        max-width: 90%;
+    }
+    .login-input label {
+        font-size: 1em;
+    }
+
+    .login-input input {
+        width: 50%;
+    }
+    .login-input .input-password input {
+        margin-left: 40px;
+        margin-top: 10px;
+
+    }
+    .login-button button {
+        width: 40%;
+    }
+    
+ }
