@@ -172,3 +172,42 @@ body{
     font-size: 18px;
     text-align: center;
 }
+@media screen and (max-width: 1080px) and (min-width: 360px) {
+    .order-container {
+        width: 95%;
+        height: 90%;
+        padding: 10px;
+    }
+    .order-nav-list {
+        gap: 0 10px;
+        font-size: 14px;
+    }
+    .order-item {
+        width: 100%;
+        height: auto;
+        padding: 8px 10px;
+    }
+    .order-item img {
+        height: auto;
+    }
+    .order-item h3 {
+        font-size: 16px;
+    }
+    .order-item span {
+        font-size: 16px;
+    }
+    .search-container button {
+        width: 30%;
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+    .search-container input {
+        font-size: 14px;
+        padding: 8px 10px;
+    }
+    .add-book{
+        width: 20%;
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+}

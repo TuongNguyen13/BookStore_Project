@@ -171,6 +171,9 @@ CREATE TABLE Products (
     StockQuantity INT DEFAULT 0
 );
 
+alter table Products
+add ProductImageUrl varchar(255)
+
 -- Khách hàng
 CREATE TABLE Customer (
     ID INT IDENTITY PRIMARY KEY,
@@ -261,6 +264,7 @@ CREATE TABLE Books (
     CONSTRAINT fk_Books_Product FOREIGN KEY (ProductID) REFERENCES Products(ID),
     CONSTRAINT fk_Books_Publisher FOREIGN KEY (PublisherID) REFERENCES Publishers(ID)
 );
+
 
 CREATE TABLE BookAuthors (
     ProductID INT NOT NULL,
