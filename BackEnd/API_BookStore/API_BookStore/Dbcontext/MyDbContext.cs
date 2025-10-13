@@ -8,6 +8,7 @@ namespace API_BookStore.Dbcontext
         public MyDbContext(DbContextOptions<MyDbContext> options) : base(options) { }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Products> Products { get; set; }
 
     }
 
