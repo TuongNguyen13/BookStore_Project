@@ -1,6 +1,6 @@
 import Login from './Components/Login'
 import { Routes, Route } from 'react-router-dom'
-import Order from './Components/order'
+import Order from './Components/Order'
 import AddBook from './Components/AddBook'
 
 function App() {
