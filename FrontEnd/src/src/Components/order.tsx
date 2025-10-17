@@ -34,11 +34,11 @@ function Order() {
 
 
 
-  const handelAddAndEditBook = (str: string) => {
+  const handelAddAndEditOrder = (str: string) => {
     if(str === 'add'){
-    navigate("/order/Them-Thong-Tin-Sach");
+    navigate("/order/add-order");
     } else if(str === 'edit'){
-      navigate("/order/Sua-Thong-Tin-Sach");
+      navigate("/order/edit-order");
     }
     
   }
@@ -57,7 +57,6 @@ function Order() {
 
   return (
     <div>
-
       <div className='order-container'>
         <div className='search-wrapper'>
           <div className="search-container">
@@ -67,8 +66,11 @@ function Order() {
              onChange={(e)=> setSearchTerm(e.target.value)}/>
             <button >Tìm kiếm</button>
           </div>
-            <button className='add-book' onClick={()=>handelAddAndEditBook("add")}> 
-              Thêm sách</button>
+            <button className='add-order' onClick={()=>handelAddAndEditOrder("add")}> 
+              Thêm đơn hàng</button>
+            {/* <button className='add-book' onClick={()=>handelAddAndEditBook("add")}> 
+              Thêm sách</button> */}
+                        
         </div>
 
         <div className='order-nav'>
@@ -77,6 +79,7 @@ function Order() {
             <li><a href="/Infomation">Thông tin cá nhân</a></li>
             <li><a href="/Hr">Quản lý nhân viên</a></li>
             <li><a href="/Suplier">Kho hàng</a></li>
+            <li><a href="/Products">Sản phẩm</a></li>
           </ul>
         </div>
 
