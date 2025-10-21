@@ -1,8 +1,8 @@
 .add-order-container {
     display: flex;
-    flex-direction: column; /* 👉 xếp theo chiều dọc (form trên, bảng dưới) */
-    justify-content: flex-start; /* căn theo trên */
-    align-items: center; /* căn giữa theo chiều ngang */
+    flex-direction: row; /* 👉 xếp theo chiều dọc (form trên, bảng dưới) */
+    justify-content: center; /* căn theo trên */
+    align-items: flex-start; /* căn giữa theo chiều ngang */
     min-height: 100vh;
     padding: 40px 20px;
     background: linear-gradient(135deg, #f8f9fa, #e9ecef);
@@ -12,7 +12,7 @@
 
 .add-order-form-container {
 
-        background: white;
+    background: white;
     border-radius: 15px;
     padding: 30px 35px;
     width: 100%;
@@ -143,6 +143,20 @@
 .add-order-table tr:hover {
     background-color: #e9ecef;
 }
+
+.add-order-table caption {
+    caption-side: center;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #222;
+}
+
+.add-order-info-table:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
 
 
 
