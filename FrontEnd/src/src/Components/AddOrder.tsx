@@ -45,9 +45,11 @@ function AddOrder() {
                 <button type="submit">Thêm đơn hàng</button>
             </form>
             <div className="add-order-info-table">
+                
                 <table className="add-order-table">
+                <caption>Thông tin đơn hàng</caption>
                     <thead>
-                        <h2>Thông tin đơn hàng</h2>
+                        
                         <tr>
                             <th>Mã đơn hàng</th>
                             <th>Tên khách hàng</th>
