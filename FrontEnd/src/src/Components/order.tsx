@@ -75,9 +75,9 @@ function Order() {
 
         <div className='order-nav'>
           <ul className='order-nav-list'>
-            <li><a href="/Dashboard">Trang chủ</a></li>
+            <li><a href="/dashboard">Trang chủ</a></li>
             <li><a href="/Infomation">Thông tin cá nhân</a></li>
-            <li><a href="/Hr">Quản lý nhân viên</a></li>
+            <li><a href="/Hr">Nhân viên</a></li>
             <li><a href="/Suplier">Kho hàng</a></li>
             <li><a href="/Products">Sản phẩm</a></li>
           </ul>

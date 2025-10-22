@@ -55,7 +55,7 @@ body{
 .search-container button {
     margin-left: 10px;
     border: none;
-    background: blue;
+    background: #007bff;
     color: white;
     padding: 10px 15px;
     border-radius: 8px;
@@ -122,7 +122,7 @@ body{
 }
 
 .order-nav-list li:hover {
-    background: blue;
+    background: #007bff;
 }
 .order-nav-list li:hover a {
     color: white;
