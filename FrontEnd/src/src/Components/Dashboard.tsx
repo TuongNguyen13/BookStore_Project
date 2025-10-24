@@ -4,7 +4,6 @@ import "../styles/dashboard.css";
 function Dashboard() {
     useEffect(() => {
         document.title = "Trang chủ";
-        
     }, []);
 
     const handleOrderClick = () => {

@@ -42,6 +42,11 @@ function Order() {
     }
     
   }
+
+  const handleDashboardClick = () => {
+      window.location.href = "/dashboard";
+  }
+
   const handleDeltailProduct = (productCode : string) => {
     navigate(`/order/Chi-Tiet-Sach/${productCode}`);
   }
@@ -75,7 +80,7 @@ function Order() {
 
         <div className='order-nav'>
           <ul className='order-nav-list'>
-            <li><a href="/dashboard">Trang chủ</a></li>
+            <li><a href="/dashboard" onClick={() => handleDashboardClick }>Trang chủ</a></li>
             <li><a href="/Infomation">Thông tin cá nhân</a></li>
             <li><a href="/Hr">Nhân viên</a></li>
             <li><a href="/Suplier">Kho hàng</a></li>
