@@ -1,4 +1,4 @@
-.dashboard-container{
+.dashboard-container {
     display: flex;
     flex-direction: column;
     background-color: #f5f5f5;
@@ -12,94 +12,126 @@
     border-radius: 10px;
 }
 
-.dashboard-header{
+
+.dashboard-header {
     display: flex;
-    /* justify-content: space-between; */
     align-items: center;
+    justify-content: space-between;
     background-color: white;
     padding: 10px 20px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    gap: 20px;
 }
-.dashboard-header img{
+
+.dashboard-header img {
     height: 40px;
-    float: left;
-    margin-right: 20px;
 }
-.dashboard-header input{
-    width: 400px;
+
+.dashboard-header input {
+    flex: 1;
     padding: 8px 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-    float: left;
-    box-sizing: border-box;
     background-color: #f9f9f9;
-    color: black;
-    transition: all 0.25s ease;
-    margin-right: 100px;
+    transition: 0.25s ease;
 }
 
-.dashboard-header input:focus{
-    border-color: #80bdff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
-    outline: none;
-}
-.dashboard-header input::placeholder{
-    color: #999;
-}
-
-.dashboard-header input:active{
-    background-color: #f1f1f1;
-}
-
-.dashboard-header a{
-    margin-left: 500px;
+.dashboard-header a {
     text-decoration: none;
     color: #333;
     font-weight: 600;
-    float: right;
     font-size: 16px;
     padding: 8px 30px;
     border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: 0.3s ease;
+    white-space: nowrap;
 }
-.dashboard-header a:hover{
+.dashboard-header a:hover {
     background-color: #007bff;
     color: white;
 }
 
- .dashboard-navbar{
+
+.dashboard-navbar {
     display: flex;
-    flex-direction: row;
     justify-content: center;
     background-color: white;
     padding: 10px;
-    border-end-end-radius: 10px;
-    border-end-start-radius: 10px;
+    border-radius: 0 0 10px 10px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-
-
-.dashboard-nav-list{
-    list-style-type: none;
+.dashboard-nav-list {
+    list-style: none;
     display: flex;
-    gap: 0 30px;
+    gap: 30px;
     padding: 0;
     margin: 0;
 }
-.dashboard-nav-list li a{
+
+.dashboard-nav-list li a {
     text-decoration: none;
     color: #333;
     font-weight: 600;
     font-size: 16px;
     padding: 8px 30px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 6px;
+    transition: 0.3s;
 }
-.dashboard-nav-list li a:hover{
+.dashboard-nav-list li a:hover {
     background-color: #007bff;
     color: white;
+}
+
+/* ====== RESPONSIVE ====== */
+
+/* --- Tablet (768px – 1023px) --- */
+@media (max-width: 1023px) {
+    .dashboard-header input {
+        max-width: 300px;
+    }
+
+      .dashboard-nav-list {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .dashboard-nav-list li a {
+    padding: 6px 20px;
+    font-size: 14px;
+  }
+}
+
+/* --- Mobile (≤ 767px) --- */
+@media (max-width: 767px) {
+    .dashboard-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .dashboard-header img {
+        margin-bottom: 10px;
+    }
+
+    .dashboard-header input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .dashboard-header a {
+        width: 100%;
+        text-align: right;
+          float: right;
+        justify-content: flex-end;
+    }
+
+    .dashboard-nav-list {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        text-align: center;
+    }
 }
