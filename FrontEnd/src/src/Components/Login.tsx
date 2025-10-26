@@ -39,7 +39,7 @@ function Login() {
       if (data.status === 1 && data.token) {
         console.log('Đăng nhập thành công:', data);
         localStorage.setItem('token', data.token); // ✅ Lưu token
-        navigate('/order'); // ✅ Chuyển hướng
+        navigate('/dashboard'); // ✅ Chuyển hướng
       } else {
         setError(data.message || 'Sai tài khoản hoặc mật khẩu');
       }
