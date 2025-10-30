@@ -66,7 +66,7 @@ function Order() {
         <div className='search-wrapper'>
           <div className="search-container">
             <input type="text"
-             placeholder="Nhập từ khóa tìm kiếm"
+             placeholder=" Tìm kiếm..."
              value={searchTerm}
              onChange={(e)=> setSearchTerm(e.target.value)}/>
             <button >Tìm kiếm</button>
