@@ -39,12 +39,13 @@ body{
 .search-container input {
     border: none;
     outline: none;
-    padding: 10px 15px;
+    padding: 8px 12px;
     font-size: 18px;
     border-radius: 8px;
     width: 100%;
-    background: rgba(109, 107, 107, 0.2);
+    background: white;
     color: black;
+    border : 1px solid #ccc;
 }
 
 .search-container button {
@@ -64,12 +65,11 @@ body{
 .add-order{
     margin-left: 5px;
     border: none;
-    background: green;
+    background: rgb(48, 148, 48);
     color: white;
     padding: 10px 15px;
     border-radius: 8px;
     cursor: pointer;
-    transition: 0.3s;
     align-items: center;
     text-align: center;
     width: 15%;
