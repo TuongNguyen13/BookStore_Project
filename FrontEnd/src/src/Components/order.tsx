@@ -69,7 +69,7 @@ function Order() {
              placeholder=" Tìm kiếm..."
              value={searchTerm}
              onChange={(e)=> setSearchTerm(e.target.value)}/>
-            <button >Tìm kiếm</button>
+            <button className='search-btn' >Tìm kiếm</button>
           </div>
             <button className='add-order' onClick={()=>handelAddAndEditOrder("add")}> 
               Thêm đơn hàng</button>
