@@ -1,137 +1,185 @@
-.dashboard-container {
-    display: flex;
-    flex-direction: column;
-    background-color: #f5f5f5;
-    padding: 20px;
-    width: 90%;
-    height: 80%;
-    max-height: 100vh;
-    top: 5%;
-    left: 5%;
-    position: absolute;
-    border-radius: 10px;
+/* === IMPORT FONT & RESET === */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {margin:0;padding:0;box-sizing:border-box;}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:linear-gradient(135deg,#f5f7fa 0%,#c3cfe2 100%);
+    min-height:100vh;
+    color:#2d3748;
 }
 
+/* === DASHBOARD CONTAINER === */
+.dashboard-container{
+    position:relative;
+    margin:40px auto;
+    max-width:1200px;
+    width:90%;
+    min-height:80vh;
+    background:rgba(255,255,255,.95);
+    border-radius:16px;
+    box-shadow:0 10px 30px rgba(0,0,0,.1);
+    overflow:hidden;
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.3);
+}
 
+/* === HEADER HIỆN ĐẠI === */
 .dashboard-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: white;
-    padding: 10px 20px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    gap: 20px;
+    padding: 16px 24px;
+    background: white;
+    border-bottom: 1px solid #e2e8f0;
+    gap: 16px;
+    flex-wrap: nowrap; /* Không xuống dòng */
+    min-height: 70px;
 }
 
 .dashboard-header img {
-    height: 40px;
+    height: 44px;
+    border-radius: 8px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+/* === SEARCH + PROFILE GROUP (CÙNG HÀNG) === */
+.dashboard-header .search-profile-group {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: 12px;
+    max-width: 800px;
+    flex-wrap: nowrap; /* Không xuống dòng */
+}
+
+/* Thanh tìm kiếm */
+.dashboard-header .search-box {
+    flex: 1;
+    position: relative;
+    min-width: 200px; /* Đảm bảo không bị co quá */
 }
 
 .dashboard-header input {
-    flex: 1;
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #f9f9f9;
-    transition: 0.25s ease;
+    width: 100%;
+    padding: 8px 16px 8px 44px;
+    border: 1px solid #e2e8f0;
+    border-radius: 50px;
+    font-size: 20px;
+    background: #f8fafc;
+    color: #1a202c;
+    transition: all 0.3s ease;
+    outline: none;
 }
 
-.dashboard-header a {
+.dashboard-header input::placeholder {
+    color: #94a3b8;
+}
+
+.dashboard-header input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    background: white;
+}
+
+.dashboard-header .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    font-size: 18px;
+    pointer-events: none;
+}
+
+/* === EMPLOYEE PROFILE – CẠNH THANH TÌM KIẾM === */
+.dashboard-header .employee-profile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     text-decoration: none;
-    color: #333;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
     font-weight: 600;
-    font-size: 16px;
-    padding: 8px 30px;
-    border-radius: 5px;
-    transition: 0.3s ease;
+    font-size: 15px;
+    padding: 10px 18px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
     white-space: nowrap;
-}
-.dashboard-header a:hover {
-    background-color: #007bff;
-    color: white;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    flex-shrink: 0; /* Không co lại */
 }
 
-
-.dashboard-navbar {
-    display: flex;
-    justify-content: center;
-    background-color: white;
-    padding: 10px;
-    border-radius: 0 0 10px 10px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+.dashboard-header .employee-profile img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
-.dashboard-nav-list {
-    list-style: none;
-    display: flex;
-    gap: 30px;
-    padding: 0;
-    margin: 0;
+.dashboard-header .employee-profile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
 }
 
-.dashboard-nav-list li a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 600;
-    font-size: 16px;
-    padding: 8px 30px;
-    border-radius: 6px;
-    transition: 0.3s;
+/* === NAVBAR STICKY & HIỆN ĐẠI === */
+.dashboard-navbar{
+    position:sticky;top:20px;
+    background:white;padding:12px 24px;
+    border-radius:50px;margin:20px 24px 0;
+    box-shadow:0 4px 20px rgba(0,0,0,.08);
+    backdrop-filter:blur(10px);z-index:10;
+    border:1px solid #e2e8f0;
 }
-.dashboard-nav-list li a:hover {
-    background-color: #007bff;
-    color: white;
+.dashboard-nav-list{
+    list-style:none;display:flex;justify-content:center;
+    gap:12px;padding:0;margin:0;flex-wrap:wrap;
 }
+.dashboard-nav-list li a{
+    display:flex;align-items:center;justify-content:center;
+    padding:10px 24px;border-radius:50px;
+    color:#4a5568;text-decoration:none;font-weight:600;
+    font-size:15px;transition:all .3s ease;
+    position:relative;overflow:hidden;
+}
+.dashboard-nav-list li a::before{
+    content:'';position:absolute;top:0;left:0;
+    width:100%;height:100%;
+    background:linear-gradient(135deg,#3b82f6,#2563eb);
+    border-radius:50px;transform:scaleX(0);
+    transform-origin:left;transition:transform .3s ease;z-index:-1;
+}
+.dashboard-nav-list li a:hover::before,
+.dashboard-nav-list li a.active::before{transform:scaleX(1);}
+.dashboard-nav-list li a:hover,
+.dashboard-nav-list li a.active{color:white;font-weight:700;}
 
-/* ====== RESPONSIVE ====== */
-
-/* --- Tablet (768px – 1023px) --- */
-@media (max-width: 1023px) {
-    .dashboard-header input {
-        max-width: 300px;
+/* === RESPONSIVE === */
+@media (max-width:1024px){
+    .dashboard-container{width:95%;margin:20px auto;}
+    .dashboard-header{padding:14px 20px;gap:12px;}
+    .dashboard-header .search-box{max-width:400px;}
+}
+@media (max-width:768px){
+    .dashboard-header{
+        flex-direction:column;align-items:stretch;text-align:center;
     }
-
-      .dashboard-nav-list {
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .dashboard-nav-list li a {
-    padding: 6px 20px;
-    font-size: 14px;
-  }
+    .dashboard-header img{margin-bottom:12px;}
+    .dashboard-header .search-box{max-width:100%;order:3;}
+    .dashboard-header .employee-profile{
+        width:100%;justify-content:center;margin-top:12px;
+    }
+    .dashboard-navbar{margin:16px 16px 0;padding:10px 16px;}
+    .dashboard-nav-list{gap:8px;}
+    .dashboard-nav-list li a{padding:8px 18px;font-size:14px;}
 }
-
-/* --- Mobile (≤ 767px) --- */
-@media (max-width: 767px) {
-    .dashboard-header {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .dashboard-header img {
-        margin-bottom: 10px;
-    }
-
-    .dashboard-header input {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-
-    .dashboard-header a {
-        width: 100%;
-        text-align: right;
-          float: right;
-        justify-content: flex-end;
-    }
-
-    .dashboard-nav-list {
-        flex-direction: column;
-        gap: 10px;
-        width: 100%;
-        text-align: center;
-    }
+@media (max-width:480px){
+    .dashboard-container{width:98%;margin:10px auto;padding:0;}
+    .dashboard-header{padding:12px 16px;}
+    .dashboard-header input{font-size:14px;padding:10px 12px 10px 40px;}
+    .dashboard-navbar{top:10px;margin:12px 12px 0;}
+    .dashboard-nav-list{flex-direction:column;align-items:center;}
+    .dashboard-nav-list li a{width:100%;max-width:200px;text-align:center;}
 }
