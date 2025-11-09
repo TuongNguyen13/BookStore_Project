@@ -24,13 +24,15 @@ function Employee() {
         <div className="employee-container">
             <div className="employee-header">
                 <h2>Quản lý nhân viên</h2>
-                <div className="employee-search">
+                     <div className="employee-search">
                     <input type="text" placeholder="Tìm kiếm..." />
                     <button>Tìm kiếm</button>
-                </div>
                 <div>
                     <button onClick={() => handleAddEmployee()}>Thêm nhân viên</button>
                 </div>
+                </div>
+                </div>
+               
                 <div className="employee-table-information">
                     <table>
                         <caption>Thông tin nhân viên</caption>
@@ -45,6 +47,13 @@ function Employee() {
                         </thead>
 
                         <tbody>
+                        <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                        </tr>
 
                         </tbody>
 
@@ -114,7 +123,7 @@ function Employee() {
                         </div>
                     )}
                 </div>
-            </div>
+            
         </div>
     );
 }
