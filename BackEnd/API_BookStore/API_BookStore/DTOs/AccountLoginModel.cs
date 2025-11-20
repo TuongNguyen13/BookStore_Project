@@ -1,4 +1,4 @@
-﻿namespace API_BookStore.Models
+﻿namespace API_BookStore.DTOs
 {
     public class AccountLoginModel
     {

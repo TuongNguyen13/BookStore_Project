@@ -103,6 +103,7 @@ function Employee() {
                                         <input type="text" placeholder="Nhập email..." name="employee-email" />
                                     </div>
                                     <div>
+                                        <label htmlFor="employee-grant">Chức vụ</label>
                                         <select name="employee-grant" id="txt-employee-grant">
                                             <option value="normal-employee" defaultChecked>Nhân viên</option>
                                             <option value="managa-employee">Quản lý</option>

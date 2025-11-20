@@ -3,7 +3,7 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using API_BookStore.Interfaces;
-using API_BookStore.Models;
+using API_BookStore.DTOs;
 
 namespace API_BookStore.Services
 {

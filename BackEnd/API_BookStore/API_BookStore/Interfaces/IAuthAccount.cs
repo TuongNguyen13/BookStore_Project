@@ -1,4 +1,5 @@
-﻿using API_BookStore.Models;
+﻿using API_BookStore.DTOs;
+
 namespace API_BookStore.Interfaces
 {
     public interface IAuthAccount
