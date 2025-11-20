@@ -1,74 +1,468 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
-    font-family:'Inter',sans-serif;
-    background:linear-gradient(135deg,#f5f7fa 0%,#c3cfe2 100%);
-    min-height:100vh;
-    color:#2d3748;
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    color: #2d3748;
 }
-.employee-container{
+
+.employee-container {
     position: relative;
-    margin:40px auto;
-    max-width:1200px;
-    width:90%;
-    min-height:80vh;
-    background:rgba(255,255,255,.95);
-    border-radius:16px;
-    box-shadow:0 10px 30px rgba(0,0,0,.1);
-    overflow:hidden;
-    backdrop-filter:blur(10px);
-    border:1px solid rgba(255,255,255,.3);
-
+    margin: 40px auto;
+    max-width: 1200px;
+    width: 90%;
+    min-height: 80vh;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.employee-header{
+/* Header */
+.employee-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px;
+    padding: 20px 30px;
     background: white;
-     border-bottom: 1px solid #e2e8f0;
-    gap: 5px;
-    flex-wrap: nowrap; 
-    min-height: 70px;
+    border-bottom: 1px solid #e2e8f0;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
+.employee-header h2 {
+    color: black;
+    font-size: 24px;
+    font-weight: 600;
+    min-width: 200px;
+}
 
-
-.employee-header .employee-search{
- display: flex;
+/* Search Section */
+.employee-search {
+    display: flex;
     align-items: center;
     flex: 1;
     gap: 12px;
-    max-width: 800px;
+    max-width: 1000px;
     flex-wrap: nowrap;
 }
 
-.employee-search input{
-    width: 100%;
+.employee-search input {
+    flex: 1;
+    min-width: 200px;
     background: white;
-    border: 1px solid black;
-    padding: 8px 16px;
-    border-radius: 20px;
+    border-bottom: 1px solid transparent  #e2e8f0;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 14px;
     transition: all 0.3s ease;
-    margin-right: 50px;
-
+    outline: none;
 }
 
-.employee-search button{
-    width: 20%;
-    color: white;
-    background: #3b82f6;
-    padding: 8px 16px;
-    border-radius: 20px;
+.employee-search input:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.employee-search button {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    padding: 10px 24px;
+    border-radius: 25px;
     border: none;
     cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+
 }
 
-.employee-table-information{
+.employee-search button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.employee-search > div button {
+    background: linear-gradient(135deg, rgb(28, 184, 28) );
+    color: white;
+    padding: 10px 24px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.employee-search > div button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(1, 34, 8, 0.63);
+}
+
+/* Table Section */
+.employee-table-information {
+    padding: 30px;
+    overflow-x: auto;
+}
+
+.employee-table-information table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.employee-table-information caption {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2d3748;
+    text-align: left;
+    margin-bottom: 20px;
+    padding-left: 10px;
+}
+
+.employee-table-information thead {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.employee-table-information th {
+    padding: 16px;
+    text-align: left;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.employee-table-information tbody tr {
+    transition: all 0.3s ease;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.employee-table-information tbody tr:hover {
+    background: #f7fafc;
+    transform: scale(1.01);
+}
+
+.employee-table-information tbody tr:last-child {
+    border-bottom: none;
+}
+
+.employee-table-information td {
+    padding: 16px;
+    color: #4a5568;
+    font-size: 14px;
+}
+
+.employee-table-information td:last-child {
+    display: flex;
+    gap: 8px;
+}
+
+/* Pagination */
+.employee-container > div:nth-child(3) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: white;
+    border-top: 1px solid #e2e8f0;
+}
+
+.employee-container > div:nth-child(3) button {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, rgb(24, 24, 252) );
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.employee-container > div:nth-child(3) button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.employee-container > div:nth-child(3) button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.employee-container > div:nth-child(3) span {
+    color: #4a5568;
+    font-weight: 600;
+}
+
+/* Modal Overlay */
+.employee-container > div:last-child > div {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Modal Content */
+.employee-container > div:last-child > div > div {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    max-width: 600px;
+    width: 80%;
+    max-height: 70vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.employee-container > div:last-child h2 {
+    color: #2d3748;
+    font-size: 16px;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+/* Form Styles */
+.employee-container form > div {
+    margin-bottom: 8px;
+}
+
+.employee-container form label {
+    display: block;
+    color: #4a5568;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.employee-container form input[type="text"],
+.employee-container form input[type="date"],
+.employee-container form select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    outline: none;
+    font-family: 'Inter', sans-serif;
+    background: white;
+    color: black;
+}
+
+.employee-container form input[type="text"]:focus,
+.employee-container form input[type="date"]:focus,
+.employee-container form select:focus {
+    border-color: #08acc2;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.employee-container form input[type="text"]:disabled {
+    background: #f7fafc;
+    cursor: not-allowed;
+}
+
+/* Radio Buttons */
+
+.employee-container form input[type="radio"] {
+    margin: 0 8px 0 4px;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    accent-color: blue;
+    background-color: white;
+}
+
+.employee-container form div > div {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.employee-container form div > div span {
+    color: #4a5568;
+    font-size: 14px;
+}
+
+/* Select Dropdown */
+.employee-container form select {
+    cursor: pointer;
+    background: white;
+}
+
+/* Form Buttons */
+.employee-container form > div:last-child {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.employee-container form button[type="submit"] {
+    padding: 12px 32px;
+    background: linear-gradient(135deg, rgb(10, 101, 236));
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.employee-container form button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
     
+}
+
+.employee-container form > div:last-child button:last-child {
+    padding: 12px 32px;
+    background: white;
+    color: #4a5568;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.employee-container form > div:last-child button:last-child:hover {
+    background: #f7fafc;
+    border-color: #cbd5e0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .employee-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+        padding: 20px;
+    }
+
+    .employee-header h2 {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .employee-search {
+        flex-direction: column;
+        max-width: 100%;
+    }
+
+    .employee-search input,
+    .employee-search button,
+    .employee-search > div button {
+        width: 100%;
+    }
+
+    .employee-table-information {
+        padding: 15px;
+    }
+
+    .employee-table-information table {
+        font-size: 12px;
+    }
+
+    .employee-table-information th,
+    .employee-table-information td {
+        padding: 10px 8px;
+    }
+
+    .employee-container > div:last-child > div > div {
+        padding: 20px;
+        width: 95%;
+    }
+
+    .employee-container form > div:last-child {
+        flex-direction: column;
+    }
+
+    .employee-container form button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .employee-container {
+        margin: 20px auto;
+        width: 95%;
+        border-radius: 12px;
+    }
+
+    .employee-header h2 {
+        font-size: 18px;
+    }
+
+    .employee-table-information caption {
+        font-size: 16px;
+    }
+}
+
+/* Scrollbar Styling */
+.employee-table-information::-webkit-scrollbar {
+    height: 8px;
+}
+
+.employee-table-information::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.employee-table-information::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 10px;
+}
+
+.employee-table-information::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
 }

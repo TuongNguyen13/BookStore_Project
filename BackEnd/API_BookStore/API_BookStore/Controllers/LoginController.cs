@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using API_BookStore.Services;
-using API_BookStore.Models;
 using API_BookStore.Interfaces;
 using System.Diagnostics;
+using API_BookStore.DTOs;
 
 namespace API_BookStore.Controllers
 {

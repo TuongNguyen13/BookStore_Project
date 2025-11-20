@@ -1,7 +1,8 @@
 ﻿using Dapper;
 using System.Data;
 using API_BookStore.Interfaces;
-using API_BookStore.Dbcontext;
+using API_BookStore.DTOs;
+using Microsoft.EntityFrameworkCore;
 using API_BookStore.Models;
 
 
@@ -12,7 +13,7 @@ namespace API_BookStore.Services
         private readonly MyDbContext _context;
         private readonly IDbConnection _dbConnection;
 
-        public AccountService( MyDbContext context, IDbConnection dbConnection) 
+        public AccountService(MyDbContext context, IDbConnection dbConnection)
         {
            _context = context;
             _dbConnection = dbConnection;

@@ -1,6 +1,4 @@
-﻿using API_BookStore.Models;
-using API_BookStore.Entites;
-using API_BookStore.Models;
+﻿using API_BookStore.DTOs;
 
 namespace API_BookStore.Interfaces
 {
