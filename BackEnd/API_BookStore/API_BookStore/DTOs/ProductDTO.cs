@@ -1,6 +1,6 @@
 ﻿namespace API_BookStore.DTOs
 {
-    public class ProductModels
+    public class ProductDTO
     {
         public int? Id { get; set; }
         public string? ProductCode { get; set; }

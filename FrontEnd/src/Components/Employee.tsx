@@ -42,6 +42,7 @@ function Employee() {
                                 <th>Tên nhân viên</th>
                                 <th>Giới tính</th>
                                 <th>Email</th>
+                                <th>Địa chỉ</th>
                                 <th>Chức năng</th>
                             </tr>
                         </thead>

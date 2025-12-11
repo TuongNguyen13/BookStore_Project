@@ -25,7 +25,7 @@ public partial class Employee
     [StringLength(20)]
     public string? Gender { get; set; }
 
-    public DateOnly? BirthDay { get; set; }
+    public DateTime BirthDay { get; set; }
 
     [StringLength(255)]
     public string? EmployeeAddress { get; set; }
