@@ -1,9 +1,9 @@
-﻿using API_BookStore.DTOs;
+﻿using API_BookStore.DTOs.AccountDto;
 
 namespace API_BookStore.Interfaces
 {
     public interface IAuthAccount
     {
-        Task<string?> AuthLoginAsync (AccountRequestModel accountRequestModel);
+        Task<string?> AuthLoginAsync (AccountRequestDTO accountRequestModel);
     }
 }

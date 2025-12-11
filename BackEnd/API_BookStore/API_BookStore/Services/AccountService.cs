@@ -1,9 +1,9 @@
 ﻿using Dapper;
 using System.Data;
 using API_BookStore.Interfaces;
-using API_BookStore.DTOs;
 using Microsoft.EntityFrameworkCore;
 using API_BookStore.Models;
+using API_BookStore.DTOs.AccountDto;
 
 
 namespace API_BookStore.Services
@@ -19,14 +19,14 @@ namespace API_BookStore.Services
             _dbConnection = dbConnection;
         }
 
-        public async Task<AccountLoginModel?> GetAccountInfor(string username, string password)
+        public async Task<AccountLoginDTO?> GetAccountInfor(string username, string password)
         {
             string sql = @"SELECT a.Username, e.EmployeeCode, e.EmployeeName
                    FROM Account AS a
                    JOIN Employee AS e ON a.EmployeeId = e.ID
                    WHERE a.Username = @username AND a.Pass = @password";
 
-            return await _dbConnection.QueryFirstOrDefaultAsync<AccountLoginModel>(
+            return await _dbConnection.QueryFirstOrDefaultAsync<AccountLoginDTO>(
                 sql,
                 new { username, password }
             );

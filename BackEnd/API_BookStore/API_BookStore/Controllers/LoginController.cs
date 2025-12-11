@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using API_BookStore.Services;
 using API_BookStore.Interfaces;
 using System.Diagnostics;
-using API_BookStore.DTOs;
+using API_BookStore.DTOs.AccountDto;
 
 namespace API_BookStore.Controllers
 {
@@ -18,7 +18,7 @@ namespace API_BookStore.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login([FromBody] AccountRequestModel accountRequestModel)
+        public async Task<IActionResult> Login([FromBody] AccountRequestDTO accountRequestModel)
         {
             var token = await _jwtAuth.AuthLoginAsync(accountRequestModel);
             var sw = new Stopwatch();

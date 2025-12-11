@@ -3,7 +3,7 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using API_BookStore.Interfaces;
-using API_BookStore.DTOs;
+using API_BookStore.DTOs.AccountDto;
 
 namespace API_BookStore.Services
 {
@@ -25,7 +25,7 @@ namespace API_BookStore.Services
             public const string EmployeeName = "EmployeeName";
         }
 
-        public async Task<string?> AuthLoginAsync(AccountRequestModel accountRequestModel)
+        public async Task<string?> AuthLoginAsync(AccountRequestDTO accountRequestModel)
         {
             var user = await _account.GetAccountInfor(accountRequestModel.userName, accountRequestModel.pass);
             if (user == null)
@@ -33,7 +33,7 @@ namespace API_BookStore.Services
                 return null;
             }
 
-            var loginModel = new AccountLoginModel
+            var loginModel = new AccountLoginDTO
             {
                 UserName = user.UserName,
                 EmployeeCode = user.EmployeeCode,
