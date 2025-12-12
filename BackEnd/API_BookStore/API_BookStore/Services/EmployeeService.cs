@@ -74,37 +74,33 @@ namespace API_BookStore.Services
 
         public async Task<Employee?> UpdateEmployeeAsync(UpdateEmployeeDto updateEmployeeDto, string employeeCode)
         {
-            const string sql = @"
-            UPDATE Employees 
-            SET EmployeeName = @EmployeeName,
-                Gender = @Gender,
-                BirthDay = @Birthday,
-                EmployeeAddress = @EmployeeAddress,
-                Email = @Email
-            WHERE EmployeeCode = @EmployeeCode;
-
-            SELECT * FROM Employees WHERE EmployeeCode = @EmployeeCode;
-        ";
-
             try
             {
-                
-                var employee = await _connection.QueryFirstOrDefaultAsync<Employee>(sql, new
-                {
-                    updateEmployeeDto.EmployeeName,
-                    updateEmployeeDto.Gender,
-                    updateEmployeeDto.Birthday,
-                    updateEmployeeDto.EmployeeAddress,
-                    updateEmployeeDto.Email,
-                    EmployeeCode = employeeCode
-                });
+                using var transaction = _mydbcontex.Database.BeginTransaction();
+                var existingEmployee = await _mydbcontex.Employees
+                    .FirstOrDefaultAsync(e => e.EmployeeCode == employeeCode);
 
-                return employee;
+                if (existingEmployee == null)
+                    return null;
+
+                
+                existingEmployee.EmployeeName = updateEmployeeDto.EmployeeName;
+                existingEmployee.Gender = updateEmployeeDto.Gender;
+                existingEmployee.BirthDay = updateEmployeeDto.Birthday;
+                existingEmployee.EmployeeAddress = updateEmployeeDto.EmployeeAddress;
+                existingEmployee.Email = updateEmployeeDto.Email;
+
+                
+
+                await _mydbcontex.SaveChangesAsync();
+                await transaction.CommitAsync();
+                return existingEmployee;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
-                return null;
+                Console.WriteLine($"Lỗi khi update employee: {ex.Message}");
+                Console.WriteLine($"Inner Exception: {ex.InnerException?.Message}");
+                throw; // Ném lại exception để biết lỗi gì
             }
         }
 
