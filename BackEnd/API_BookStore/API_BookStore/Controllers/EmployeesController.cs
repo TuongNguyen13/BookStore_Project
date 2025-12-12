@@ -120,7 +120,7 @@ namespace API_BookStore.Controllers
                         status = -1,
                         messages = "Mã nhân viên không tồn tại"
                     });
-                var employeeUpdate = employeeService.UpdateEmployeeAsync(updateEmployeeDto, employeeCode);
+                var employeeUpdate = await employeeService.UpdateEmployeeAsync(updateEmployeeDto, employeeCode);
                 if (employeeUpdate == null)
                     return Ok(new
                     {
@@ -144,7 +144,7 @@ namespace API_BookStore.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpDelete("delete-employee/{employeeCode}")]
         public async Task<IActionResult> DeleteEmployee( string employeeCode)
         {
             if (employeeCode == null)
@@ -153,7 +153,7 @@ namespace API_BookStore.Controllers
                     status = -1,
                     message = "Không có nhân viên này"
                 });
-            var result = employeeService.DeleteEmployeeAsync(employeeCode);
+            var result = await employeeService.DeleteEmployeeAsync(employeeCode);
             if (result.Equals(false))
                 return Ok(new { 
                     status = -1,
