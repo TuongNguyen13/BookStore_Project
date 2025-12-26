@@ -72,7 +72,7 @@ function Employee() {
                     {showModal && (
                         <div>
                             <div>
-                                <h2>{ }</h2>
+                                <h2 className="add-employee-header">Thêm nhân viên</h2>
                                 <form action="#">
                                     <div>
                                         <label htmlFor="emplyee-code">Mã nhân viên</label>
@@ -99,10 +99,17 @@ function Employee() {
                                         <label htmlFor="employee-birthday">Ngày sinh</label>
                                         <input type="date" name="employee-birthday" placeholder="Nhập ngày sinh" />
                                     </div>
+
                                     <div>
                                         <label htmlFor="employee-email">Email</label>
                                         <input type="text" placeholder="Nhập email..." name="employee-email" />
                                     </div>
+
+                                     <div>
+                                        <label htmlFor="employee-address">Địa chỉ</label>
+                                        <input type="text" placeholder="Nhập địa chỉ nhân viên..." />
+                                    </div>
+
                                     <div>
                                         <label htmlFor="employee-grant">Chức vụ</label>
                                         <select name="employee-grant" id="txt-employee-grant">
@@ -111,10 +118,7 @@ function Employee() {
                                             <option value="admin-employee">Admin</option>
                                         </select>
                                     </div>
-                                    <div>
-                                        <label htmlFor="employee-address">Địa chỉ</label>
-                                        <input type="text" placeholder="Nhập địa chỉ nhân viên..." />
-                                    </div>
+                                   
                                     <div>
                                         <button type="submit">Thêm nhân viên</button>
                                         <button onClick={()=>handleCancelEmployee()}>Cancel</button>

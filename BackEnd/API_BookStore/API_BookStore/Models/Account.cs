@@ -7,13 +7,14 @@ using Microsoft.EntityFrameworkCore;
 namespace API_BookStore.Models;
 
 [Table("Account")]
-[Microsoft.EntityFrameworkCore.Index("EmployeeId", Name = "UQ_Account_EmployeeID", IsUnique = true)]
-[Microsoft.EntityFrameworkCore.Index("Username", Name = "UQ__Account__536C85E4CE7A7C6E", IsUnique = true)]
+[Microsoft.EntityFrameworkCore.Index("EmployeeCode", Name = "UQ__Account__1F642548F9EAAB03", IsUnique = true)]
+[Microsoft.EntityFrameworkCore.Index("Username", Name = "UQ__Account__536C85E4655FBD4F", IsUnique = true)]
 public partial class Account
 {
     [Key]
-    [Column("ID")]
-    public int Id { get; set; }
+    [StringLength(20)]
+    [Unicode(false)]
+    public string UserCode { get; set; } = null!;
 
     [StringLength(50)]
     [Unicode(false)]
@@ -23,10 +24,11 @@ public partial class Account
     [Unicode(false)]
     public string Pass { get; set; } = null!;
 
-    [Column("EmployeeID")]
-    public int EmployeeId { get; set; }
+    [StringLength(20)]
+    [Unicode(false)]
+    public string EmployeeCode { get; set; } = null!;
 
-    [ForeignKey("EmployeeId")]
+    [ForeignKey("EmployeeCode")]
     [InverseProperty("Account")]
-    public virtual Employee Employee { get; set; } = null!;
+    public virtual Employee EmployeeCodeNavigation { get; set; } = null!;
 }

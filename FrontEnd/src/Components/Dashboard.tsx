@@ -35,7 +35,7 @@ function Dashboard() {
         <div className="dashboard-container">
             <div className="dashboard-header">
                   <img src="#" alt="Logo nhà sách" />
-                <input type="text" id="txtSearchDasboard" placeholder="Tìm kiếm..."/>
+                <input type="text" className="search-input" id="txtSearchDasboard" placeholder="Tìm kiếm..."/>
                 <div>
                     <a href="/profile" className="employee-profile"><i></i>Nguyễn Văn A</a>
                 </div>

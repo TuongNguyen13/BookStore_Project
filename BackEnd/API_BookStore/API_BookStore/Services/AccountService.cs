@@ -19,6 +19,8 @@ namespace API_BookStore.Services
             _dbConnection = dbConnection;
         }
 
+      
+
         public async Task<AccountLoginDTO?> GetAccountInfor(string username, string password)
         {
             string sql = @"SELECT a.Username, e.EmployeeCode, e.EmployeeName
@@ -34,11 +36,11 @@ namespace API_BookStore.Services
 
 
 
-        //public async Task CreateTokenLogin(Account account)
-        //{
-        //    _context.Accounts.Add(account);
-        //    await _context.SaveChangesAsync();
-        //}
+        public async Task CreateAccount(Account account)
+        {
+            _context.Accounts.Add(account);
+            await _context.SaveChangesAsync();
+        }
 
 
     }

@@ -6,27 +6,29 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API_BookStore.Models;
 
-[PrimaryKey("ReceiptId", "ProductId")]
+[PrimaryKey("ReceiptCode", "ProductCode")]
 [Table("ReceiptDetail")]
 public partial class ReceiptDetail
 {
     [Key]
-    [Column("ReceiptID")]
-    public int ReceiptId { get; set; }
+    [StringLength(20)]
+    [Unicode(false)]
+    public string ReceiptCode { get; set; } = null!;
 
     [Key]
-    [Column("ProductID")]
-    public int ProductId { get; set; }
+    [StringLength(20)]
+    [Unicode(false)]
+    public string ProductCode { get; set; } = null!;
 
     public int Quantity { get; set; }
 
     public double UnitPrice { get; set; }
 
-    [ForeignKey("ProductId")]
+    [ForeignKey("ProductCode")]
     [InverseProperty("ReceiptDetails")]
-    public virtual Product Product { get; set; } = null!;
+    public virtual Product ProductCodeNavigation { get; set; } = null!;
 
-    [ForeignKey("ReceiptId")]
+    [ForeignKey("ReceiptCode")]
     [InverseProperty("ReceiptDetails")]
-    public virtual Receipt Receipt { get; set; } = null!;
+    public virtual Receipt ReceiptCodeNavigation { get; set; } = null!;
 }

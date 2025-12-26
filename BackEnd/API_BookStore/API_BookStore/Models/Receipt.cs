@@ -7,34 +7,38 @@ using Microsoft.EntityFrameworkCore;
 namespace API_BookStore.Models;
 
 [Table("Receipt")]
-[Microsoft.EntityFrameworkCore.Index("ReceiptCode", Name = "UQ__Receipt__1AB76D009B0A8EE3", IsUnique = true)]
 public partial class Receipt
 {
     [Key]
-    [Column("ID")]
-    public int Id { get; set; }
-
     [StringLength(20)]
     [Unicode(false)]
     public string ReceiptCode { get; set; } = null!;
 
-    [Column("EmployeeID")]
-    public int EmployeeId { get; set; }
+    [StringLength(20)]
+    [Unicode(false)]
+    public string EmployeeCode { get; set; } = null!;
 
-    [Column("SupplierID")]
-    public int SupplierId { get; set; }
+    [StringLength(20)]
+    [Unicode(false)]
+    public string SupplierCode { get; set; } = null!;
+
+    [Column(TypeName = "decimal(18, 2)")]
+    public decimal? ReceiptTotal { get; set; }
 
     [Column(TypeName = "datetime")]
     public DateTime? DateCreated { get; set; }
 
-    [ForeignKey("EmployeeId")]
-    [InverseProperty("Receipts")]
-    public virtual Employee Employee { get; set; } = null!;
+    [StringLength(255)]
+    public string? ReceiptNote { get; set; }
 
-    [InverseProperty("Receipt")]
+    [ForeignKey("EmployeeCode")]
+    [InverseProperty("Receipts")]
+    public virtual Employee EmployeeCodeNavigation { get; set; } = null!;
+
+    [InverseProperty("ReceiptCodeNavigation")]
     public virtual ICollection<ReceiptDetail> ReceiptDetails { get; set; } = new List<ReceiptDetail>();
 
-    [ForeignKey("SupplierId")]
+    [ForeignKey("SupplierCode")]
     [InverseProperty("Receipts")]
-    public virtual Supplier Supplier { get; set; } = null!;
+    public virtual Supplier SupplierCodeNavigation { get; set; } = null!;
 }

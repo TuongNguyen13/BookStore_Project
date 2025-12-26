@@ -7,13 +7,10 @@ using Microsoft.EntityFrameworkCore;
 namespace API_BookStore.Models;
 
 [Table("Customer")]
-[Microsoft.EntityFrameworkCore.Index("CustomerCode", Name = "UQ__Customer__06678521FD475F0B", IsUnique = true)]
+[Microsoft.EntityFrameworkCore.Index("PhoneNumber", Name = "UQ__Customer__85FB4E38320F84BF", IsUnique = true)]
 public partial class Customer
 {
     [Key]
-    [Column("ID")]
-    public int Id { get; set; }
-
     [StringLength(20)]
     [Unicode(false)]
     public string CustomerCode { get; set; } = null!;
@@ -31,6 +28,6 @@ public partial class Customer
     [StringLength(255)]
     public string? CustomerAddress { get; set; }
 
-    [InverseProperty("Customer")]
+    [InverseProperty("CustomerCodeNavigation")]
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 }

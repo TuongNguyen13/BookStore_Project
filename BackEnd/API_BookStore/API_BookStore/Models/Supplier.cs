@@ -7,13 +7,9 @@ using Microsoft.EntityFrameworkCore;
 namespace API_BookStore.Models;
 
 [Table("Supplier")]
-[Microsoft.EntityFrameworkCore.Index("SupplierCode", Name = "UQ__Supplier__44BE981B14526FF8", IsUnique = true)]
 public partial class Supplier
 {
     [Key]
-    [Column("ID")]
-    public int Id { get; set; }
-
     [StringLength(20)]
     [Unicode(false)]
     public string SupplierCode { get; set; } = null!;
@@ -28,6 +24,10 @@ public partial class Supplier
     [Unicode(false)]
     public string? SupplierPhone { get; set; }
 
-    [InverseProperty("Supplier")]
+    [StringLength(255)]
+    [Unicode(false)]
+    public string? SupplierEmail { get; set; }
+
+    [InverseProperty("SupplierCodeNavigation")]
     public virtual ICollection<Receipt> Receipts { get; set; } = new List<Receipt>();
 }
