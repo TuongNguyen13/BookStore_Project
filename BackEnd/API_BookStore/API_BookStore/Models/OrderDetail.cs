@@ -6,26 +6,28 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API_BookStore.Models;
 
-[PrimaryKey("OrderId", "ProductId")]
+[PrimaryKey("OrderCode", "ProductCode")]
 public partial class OrderDetail
 {
     [Key]
-    [Column("OrderID")]
-    public int OrderId { get; set; }
+    [StringLength(20)]
+    [Unicode(false)]
+    public string OrderCode { get; set; } = null!;
 
     [Key]
-    [Column("ProductID")]
-    public int ProductId { get; set; }
+    [StringLength(20)]
+    [Unicode(false)]
+    public string ProductCode { get; set; } = null!;
 
     public int Quantity { get; set; }
 
     public double UnitPrice { get; set; }
 
-    [ForeignKey("OrderId")]
+    [ForeignKey("OrderCode")]
     [InverseProperty("OrderDetails")]
-    public virtual Order Order { get; set; } = null!;
+    public virtual Order OrderCodeNavigation { get; set; } = null!;
 
-    [ForeignKey("ProductId")]
+    [ForeignKey("ProductCode")]
     [InverseProperty("OrderDetails")]
-    public virtual Product Product { get; set; } = null!;
+    public virtual Product ProductCodeNavigation { get; set; } = null!;
 }

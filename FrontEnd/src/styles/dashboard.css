@@ -11,6 +11,7 @@ body{
     font-family:'Inter',sans-serif;
     background:linear-gradient(135deg,#f5f7fa 0%,#c3cfe2 100%);
     min-height:100vh;
+    min-width: 100vw;
     color:#2d3748;
 }
 
@@ -19,8 +20,9 @@ body{
     position:relative;
     margin:40px auto;
     max-width:1200px;
-    width:90%;
-    min-height:80vh;
+    width:100%;
+    min-width: 98vw;
+    min-height:93vh;
     background:rgba(255,255,255,.95);
     border-radius:16px;
     box-shadow:0 10px 30px rgba(0,0,0,.1);
@@ -33,11 +35,11 @@ body{
 .dashboard-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     padding: 16px 24px;
     background: white;
     border-bottom: 1px solid #e2e8f0;
-    gap: 16px;
+    gap: 300px;
     flex-wrap: nowrap; /* Không xuống dòng */
     min-height: 70px;
 }
@@ -60,14 +62,14 @@ body{
 }
 
 /* Thanh tìm kiếm */
-.dashboard-header .search-box {
-    flex: 1;
+.dashboard-header .search-input {
     position: relative;
-    min-width: 200px; /* Đảm bảo không bị co quá */
+    width: 550px; /* Đảm bảo không bị co quá */
 }
 
 .dashboard-header input {
     width: 100%;
+    min-width: 100px;
     padding: 8px 16px 8px 44px;
     border: 1px solid #e2e8f0;
     border-radius: 50px;
@@ -102,13 +104,13 @@ body{
 .dashboard-header .employee-profile {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 2px;
     text-decoration: none;
     background: linear-gradient(135deg, #3b82f6, #2563eb);
     color: white;
     font-weight: 600;
     font-size: 15px;
-    padding: 10px 18px;
+    padding: 4px 18px;
     border-radius: 50px;
     transition: all 0.3s ease;
     white-space: nowrap;

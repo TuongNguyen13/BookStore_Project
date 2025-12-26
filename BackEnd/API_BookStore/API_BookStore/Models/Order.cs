@@ -6,37 +6,42 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API_BookStore.Models;
 
-[Microsoft.EntityFrameworkCore.Index("OrderCode", Name = "UQ__Orders__999B522963CB127C", IsUnique = true)]
 public partial class Order
 {
     [Key]
-    [Column("ID")]
-    public int Id { get; set; }
-
     [StringLength(20)]
     [Unicode(false)]
     public string OrderCode { get; set; } = null!;
 
-    [Column("CustomerID")]
-    public int CustomerId { get; set; }
+    [StringLength(20)]
+    [Unicode(false)]
+    public string CustomerCode { get; set; } = null!;
 
-    [Column("EmployeeID")]
-    public int EmployeeId { get; set; }
+    [StringLength(20)]
+    [Unicode(false)]
+    public string? EmployeeCode { get; set; }
+
+    [StringLength(30)]
+    public string? Payment { get; set; }
+
+    [StringLength(1)]
+    [Unicode(false)]
+    public string? OrderStatus { get; set; }
+
+    [Column(TypeName = "decimal(18, 2)")]
+    public decimal? OrderTotal { get; set; }
 
     [Column(TypeName = "datetime")]
     public DateTime? DateCreated { get; set; }
 
-    [ForeignKey("CustomerId")]
+    [ForeignKey("CustomerCode")]
     [InverseProperty("Orders")]
-    public virtual Customer Customer { get; set; } = null!;
+    public virtual Customer CustomerCodeNavigation { get; set; } = null!;
 
-    [ForeignKey("EmployeeId")]
+    [ForeignKey("EmployeeCode")]
     [InverseProperty("Orders")]
-    public virtual Employee Employee { get; set; } = null!;
+    public virtual Employee? EmployeeCodeNavigation { get; set; }
 
-    [InverseProperty("Order")]
+    [InverseProperty("OrderCodeNavigation")]
     public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
-
-    [InverseProperty("Order")]
-    public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
 }

@@ -25,10 +25,10 @@ namespace API_BookStore.Services
             return result.ToList();
         }
 
-        public async Task<EmployeeListDto?> GetEmployeeByIDAsync(string employeeCode)
+        public async Task<Employee?> GetEmployeeByIDAsync(string employeeCode)
         {
-            var sql = "SELECT * FROM Employee WHERE EmployeeCode = @EmployeeCode";
-            var list = await _connection.QueryFirstAsync<EmployeeListDto>(sql, new { EmployeeCode = employeeCode });
+            var sql = "SELECT Id, EmployeeCode, EmployeeName, Gender, Birthday, EmployeeAddress, Email, EmployeeRole FROM Employee WHERE EmployeeCode = @EmployeeCode";
+            var list = await _connection.QueryFirstAsync<Employee>(sql, new { EmployeeCode = employeeCode });
 
             return list;
 
@@ -38,13 +38,10 @@ namespace API_BookStore.Services
         public async Task<Employee?> CreateEmployeeAsync(CreateEmployeeDto createEmployeeDto)
         {
             try
-            {
+            {         
 
-                using var transaction = await _mydbcontex.Database.BeginTransactionAsync();
-
-                var result = _mydbcontex.Employees.FirstOrDefault(x => x.EmployeeCode == createEmployeeDto.EmployeeCode);
-
-                if (result != null)
+                var result = await _mydbcontex.Employees.AnyAsync(x => x.EmployeeCode == createEmployeeDto.EmployeeCode);
+                if (result)
                 {
                     return null;
                 }
@@ -56,13 +53,14 @@ namespace API_BookStore.Services
                     Gender = createEmployeeDto.Gender,
                     BirthDay = createEmployeeDto.Birthday,
                     EmployeeAddress = createEmployeeDto.EmployeeAddress,
-                    Email = createEmployeeDto.Email
+                    Email = createEmployeeDto.Email,
+                    EmployeeRole = createEmployeeDto.EmployeeRole
                 };
 
                 _mydbcontex.Employees.Add(newEmployee);
                 await _mydbcontex.SaveChangesAsync();
                 Console.WriteLine(newEmployee);
-                await transaction.CommitAsync();
+
                 return newEmployee;
             }
             catch (Exception ex)
@@ -89,8 +87,9 @@ namespace API_BookStore.Services
                 existingEmployee.BirthDay = updateEmployeeDto.Birthday;
                 existingEmployee.EmployeeAddress = updateEmployeeDto.EmployeeAddress;
                 existingEmployee.Email = updateEmployeeDto.Email;
+                existingEmployee.EmployeeRole = updateEmployeeDto.EmployeeRole;
 
-                
+
 
                 await _mydbcontex.SaveChangesAsync();
                 await transaction.CommitAsync();

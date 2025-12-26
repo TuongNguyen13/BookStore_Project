@@ -8,5 +8,7 @@ namespace API_BookStore.DTOs.EmployeeDto
         public DateTime Birthday { get; set; }
         public string EmployeeAddress { get; set; }
         public string Email { get; set; }
+
+        public string EmployeeRole { get; set; }
     }
 }
