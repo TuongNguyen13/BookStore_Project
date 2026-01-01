@@ -44,7 +44,7 @@ CREATE TABLE Supplier (
 -- Sản phẩm (bao gồm sách, bút, thước, ...)
 CREATE TABLE Products (
     ProductCode VARCHAR(20) PRIMARY KEY NOT NULL,
-    ProductName NVARCHAR(255) NOT NULL,
+    ProductName NVARCHAR(255) NOT NULL unique,
     ProductType NVARCHAR(255) NOT NULL DEFAULT(N'Khác'),
     Price DECIMAL(18,2) NOT NULL,
     ProductYear INT,
