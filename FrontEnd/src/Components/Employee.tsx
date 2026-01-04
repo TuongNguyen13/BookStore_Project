@@ -139,7 +139,7 @@ function EmployeePage() {
     };
 
     const inValidPhoneNumber = (phone: string) => {
-        const phoneRegex = /^\d{10,15}$/;
+        const phoneRegex = /^0\d{9}$/;
         return phoneRegex.test(phone);
     };
     const handleEdit = (emp: Employee) => {
