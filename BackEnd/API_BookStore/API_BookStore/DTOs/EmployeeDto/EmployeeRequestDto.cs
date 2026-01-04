@@ -1,14 +1,16 @@
 ﻿using API_BookStore.Models;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 namespace API_BookStore.DTOs.EmployeeDto
 {
-    public class UpdateEmployeeDto
+    public class EmployeeRequestDto
     {
+
         public string EmployeeName { get; set; }
         public string Gender { get; set; }
         public DateTime Birthday { get; set; }
         public string EmployeeAddress { get; set; }
         public string Email { get; set; }
-
+        public string EmployeeNumber { get; set; }
         public string EmployeeRole { get; set; }
     }
 }

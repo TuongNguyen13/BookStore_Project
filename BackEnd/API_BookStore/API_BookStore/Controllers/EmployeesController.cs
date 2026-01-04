@@ -20,6 +20,7 @@ namespace API_BookStore.Controllers
             employeeService = employee;
         }
         [HttpGet("get-employee")]
+
         public async Task<IActionResult> GetAllEmployee()
         {
             try
@@ -77,12 +78,40 @@ namespace API_BookStore.Controllers
             }
         }
 
-        [HttpPost("add-employee")]
-        public async Task<IActionResult> CreateEmployee([FromBody] CreateEmployeeDto createEmployeeDto)
+        [HttpGet("get-new-employee-code")]
+        public async Task<IActionResult> GetNewEmployeeCode()
         {
             try
             {
-                var result = await employeeService.CreateEmployeeAsync(createEmployeeDto);
+                var newEmployeeCode = await employeeService.GetNewEmployeeCodeAsync();
+                if (newEmployeeCode == null)
+                    return Ok(new
+                    {
+                        status = -1,
+                        messages = "Lỗi lấy mã nhân viên mới"
+                    });
+                return Ok(new
+                {
+                    status = 1,
+                    messages = newEmployeeCode
+                });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new
+                {
+                    status = -1,
+                    messages = ex.ToString()
+                });
+            }
+        }
+
+        [HttpPost("add-employee")]
+        public async Task<IActionResult> CreateEmployee([FromBody] EmployeeRequestDto employeeRequestDto)
+        {
+            try
+            {
+                var result = await employeeService.CreateEmployeeAsync(employeeRequestDto);
                 if (result == null)
                 {
                     return Ok(new
@@ -110,7 +139,7 @@ namespace API_BookStore.Controllers
         }
 
         [HttpPut("edit-employee/{employeeCode}")]
-        public async Task<IActionResult> UpdateEmployee([FromBody] UpdateEmployeeDto updateEmployeeDto, string employeeCode)
+        public async Task<IActionResult> UpdateEmployee([FromBody] EmployeeRequestDto employeeRequestDto, string employeeCode)
         {
             try
             {
@@ -120,7 +149,7 @@ namespace API_BookStore.Controllers
                         status = -1,
                         messages = "Mã nhân viên không tồn tại"
                     });
-                var employeeUpdate = await employeeService.UpdateEmployeeAsync(updateEmployeeDto, employeeCode);
+                var employeeUpdate = await employeeService.UpdateEmployeeAsync(employeeRequestDto, employeeCode);
                 if (employeeUpdate == null)
                     return Ok(new
                     {
