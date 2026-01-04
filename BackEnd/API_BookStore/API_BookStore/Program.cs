@@ -24,6 +24,9 @@ builder.Services.AddScoped<IDbConnection>(sp =>
 builder.Services.AddScoped<IAccount, AccountService>();
 builder.Services.AddScoped<IAuthAccount, AuthLoginService>();
 builder.Services.AddScoped<IEmployee, EmployeeService>();
+builder.Services.AddScoped<IProduct, ProductServices>();
+builder.Services.AddScoped<ICustomer, CustomerServices>();
+
 
 
 // Add jwt auth
@@ -62,6 +65,7 @@ builder.Services.AddCors(option =>
         policy.AllowAnyOrigin();
         policy.AllowAnyMethod();
         policy.AllowAnyHeader();
+        policy.SetIsOriginAllowed((host) => true);
     });
 });
 

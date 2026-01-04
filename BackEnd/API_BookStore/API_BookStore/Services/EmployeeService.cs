@@ -35,26 +35,23 @@ namespace API_BookStore.Services
         }
 
 
-        public async Task<Employee?> CreateEmployeeAsync(CreateEmployeeDto createEmployeeDto)
+        public async Task<Employee?> CreateEmployeeAsync(EmployeeRequestDto employeeRequestDto)
         {
             try
             {         
-
-                var result = await _mydbcontex.Employees.AnyAsync(x => x.EmployeeCode == createEmployeeDto.EmployeeCode);
-                if (result)
-                {
-                    return null;
-                }
-
+                
+             var newEmployeeCode = await GetNewEmployeeCodeAsync();
+               
                 var newEmployee = new Employee
                 {
-                    EmployeeCode = createEmployeeDto.EmployeeCode,
-                    EmployeeName = createEmployeeDto.EmployeeName,
-                    Gender = createEmployeeDto.Gender,
-                    BirthDay = createEmployeeDto.Birthday,
-                    EmployeeAddress = createEmployeeDto.EmployeeAddress,
-                    Email = createEmployeeDto.Email,
-                    EmployeeRole = createEmployeeDto.EmployeeRole
+                    EmployeeCode = newEmployeeCode,
+                    EmployeeName = employeeRequestDto.EmployeeName,
+                    Gender = employeeRequestDto.Gender,
+                    BirthDay = employeeRequestDto.Birthday,
+                    EmployeeAddress = employeeRequestDto.EmployeeAddress,
+                    EmployeeNumber = employeeRequestDto.EmployeeNumber,
+                    Email = employeeRequestDto.Email,
+                    EmployeeRole = employeeRequestDto.EmployeeRole
                 };
 
                 _mydbcontex.Employees.Add(newEmployee);
@@ -70,11 +67,11 @@ namespace API_BookStore.Services
 
         }
 
-        public async Task<Employee?> UpdateEmployeeAsync(UpdateEmployeeDto updateEmployeeDto, string employeeCode)
+        public async Task<Employee?> UpdateEmployeeAsync(EmployeeRequestDto employeeRequestDto, string employeeCode)
         {
             try
             {
-                using var transaction = _mydbcontex.Database.BeginTransaction();
+
                 var existingEmployee = await _mydbcontex.Employees
                     .FirstOrDefaultAsync(e => e.EmployeeCode == employeeCode);
 
@@ -82,17 +79,18 @@ namespace API_BookStore.Services
                     return null;
 
                 
-                existingEmployee.EmployeeName = updateEmployeeDto.EmployeeName;
-                existingEmployee.Gender = updateEmployeeDto.Gender;
-                existingEmployee.BirthDay = updateEmployeeDto.Birthday;
-                existingEmployee.EmployeeAddress = updateEmployeeDto.EmployeeAddress;
-                existingEmployee.Email = updateEmployeeDto.Email;
-                existingEmployee.EmployeeRole = updateEmployeeDto.EmployeeRole;
+                existingEmployee.EmployeeName = employeeRequestDto.EmployeeName;
+                existingEmployee.Gender = employeeRequestDto.Gender;
+                existingEmployee.BirthDay = employeeRequestDto.Birthday;
+                existingEmployee.EmployeeAddress = employeeRequestDto.EmployeeAddress;
+                existingEmployee.EmployeeNumber = employeeRequestDto.EmployeeNumber;
+                existingEmployee.Email = employeeRequestDto.Email;
+                existingEmployee.EmployeeRole = employeeRequestDto.EmployeeRole;
 
 
 
                 await _mydbcontex.SaveChangesAsync();
-                await transaction.CommitAsync();
+
                 return existingEmployee;
             }
             catch (Exception ex)
@@ -124,6 +122,18 @@ namespace API_BookStore.Services
 
         }
 
-
+        public async Task<string> GetNewEmployeeCodeAsync()
+        {
+          var lastEmployee = await _mydbcontex.Employees
+                    .OrderByDescending(e => e.EmployeeCode)
+                    .FirstOrDefaultAsync();
+            if(lastEmployee == null)
+            {
+                return "EP0001";
+            }
+             string lastCodeNumber = lastEmployee.EmployeeCode.Substring(2);
+            int newCodeNumber = int.Parse(lastCodeNumber) + 1;
+            return "EP" + newCodeNumber.ToString("D4");
+        }
     }
 }
