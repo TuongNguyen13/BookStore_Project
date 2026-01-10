@@ -10,6 +10,7 @@ import Dashboard from './Components/Dashboard'
 import Order from './Components/Order'
 import AddOrder from './Components/AddOrder'
 import Employee from './Components/Employee'
+import ProductPage from './pages/ProductPage'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path='/order' element={<Order/>}/>
         <Route path='/order/add-order' element= {<AddOrder/>}/>
         <Route path='/employee' element = {<Employee/>}/>
+        <Route path='/product' element = {<ProductPage/>}/>
       </Routes>
     </div>
   )
