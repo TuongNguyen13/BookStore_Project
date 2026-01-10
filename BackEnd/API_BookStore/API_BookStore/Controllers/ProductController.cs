@@ -37,7 +37,28 @@ namespace API_BookStore.Controllers
                 });
         }
 
-        [HttpGet("get-product-by-id/{id}")]
+        [HttpGet("get-product-code")]
+        public async Task<IActionResult> GetProductCode()
+        {
+            var productCodes = await _productService.GenerateProductCode();
+            if (productCodes == null)
+            {
+                return Ok(
+                    new
+                    {
+                        Status = -1,
+                        Message = "No product codes found"
+                    });
+            }
+            return Ok(
+                new
+                {
+                    Status = 1,
+                    Message = productCodes
+                });
+        }
+
+        [HttpGet("get-product-by-id/{productCode}")]
         public async Task<IActionResult> GetProductById(string produtCode)
         {
             var product = await _productService.GetProductByCodeAsync(produtCode);
@@ -59,7 +80,7 @@ namespace API_BookStore.Controllers
         }
 
         [HttpPost("add-product")]
-        public async Task<IActionResult> AddProduct([FromBody] ProductDTO productModel)
+        public async Task<IActionResult> AddProduct([FromForm] ProductDTO productModel)
         {
             var result = await _productService.CreateProduct(productModel);
             if (!result)
@@ -80,10 +101,10 @@ namespace API_BookStore.Controllers
         }
 
 
-        [HttpPut("update-product/{id}")]
-        public async Task<IActionResult> UpdateProduct([FromBody] ProductDTO productModel)
+        [HttpPut("update-product/{productCode}")]
+        public async Task<IActionResult> UpdateProduct([FromForm] ProductDTO productModel, string productCode)
         {
-            var result = await _productService.UpdateProduct(productModel);
+            var result = await _productService.UpdateProduct(productModel, productCode);
             if (!result)
             {
                 return Ok(
@@ -101,10 +122,10 @@ namespace API_BookStore.Controllers
                 });
         }
 
-        [HttpDelete("delete-product/{id}")]
-        public async Task<IActionResult> DeleteProduct(string produtCode)
+        [HttpDelete("delete-product/{productCode}")]
+        public async Task<IActionResult> DeleteProduct(string productCode)
         {
-            var result = await _productService.DeleteProduct(produtCode);
+            var result = await _productService.DeleteProduct(productCode);
             if (!result)
             {
                 return Ok(
