@@ -11,7 +11,7 @@ interface Products {
   ProductImageUrl: string;
 }
 
-function Order() {
+function OrderPage() {
   
   const [products, setProducts] = useState<Products[]>([]);
   const navigate = useNavigate();
@@ -82,21 +82,22 @@ function Order() {
           <ul className='order-nav-list'>
             <li><a href="/dashboard" onClick={() => handleDashboardClick }>Trang chủ</a></li>
             <li><a href="/Infomation">Thông tin cá nhân</a></li>
-            <li><a href="/Hr">Nhân viên</a></li>
+            <li><a href="/employee">Nhân viên</a></li>
             <li><a href="/Suplier">Kho hàng</a></li>
-            <li><a href="/Products">Sản phẩm</a></li>
+            <li><a href="/product">Sản phẩm</a></li>
           </ul>
         </div>
 
         <div className="order-list">
           {filterProducts.map((product) => (
-          <div key={product.productCode} className='order-item' onClick={()=>handleDeltailProduct(product.productCode)}>
+          <div key={product.productCode} className='order-item'
+           onClick={()=>handleDeltailProduct(product.productCode)}>
              <h3>{product.productName}</h3>
             <img src="{product.ProductImageUrl}" alt={`ảnh sách ${product.productName}`} />
             <br />
             <span>{product.ProductYear}</span>
             <br />
-            <span> {product.Price} &#8363; </span>
+            <span> {(product.Price).toLocaleString()} VND</span>
             <br />
             <span>Tồn kho: {product.StockQuantity}</span>
           </div>))}
@@ -104,4 +105,4 @@ function Order() {
       </div>
     </div>
   );
-} export default Order
+} export default OrderPage

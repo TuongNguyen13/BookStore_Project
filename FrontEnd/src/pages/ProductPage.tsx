@@ -24,6 +24,9 @@ const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
 const [modal, setModal] = useState <"add" | "edit"> ("add"); 
 
+ const [searchValue, setSearchValue] = useState("");
+
+
 const fetchProductsAsync = async () => {
     setLoading (true);
     try {
@@ -55,6 +58,11 @@ const handleCreate = async () => {
   setShowFormModal(true);
 }
 
+ const handleSearch = () => {
+        console.log("Search keyword:", searchValue);
+        // 👉 Gọi API search tại đây
+    };
+
 const handleEdit = (product: Product) => {
     setModal("edit");
     setSelectedProduct(product);
@@ -65,6 +73,7 @@ const handleViewClick = (product: Product) => {
     setSelectedProduct(product);
     setShowDetailModal(true);
 } 
+
 
 const handleSubmitForm = async (formData: FormData) => {
     if(modal === "add")
@@ -94,14 +103,24 @@ useEffect(() => {
 
     return (
     <div  className = "product-container">
-        <HeaderProduct onCreate={handleCreate}/>
+      <HeaderProduct
+                searchValue={searchValue}
+                onSearchChange={setSearchValue}
+                onSearch={handleSearch}
+                onCreate={handleCreate}
+                userName="Nguyễn Văn A"
+                employeeCode="EMP001"
+            />
         {
             loading ? (
                 <p>Đang tải...</p>
             ): (
-                <ProductList products={product} onView={handleViewClick}
+                <ProductList products={product} 
+                onView={handleViewClick}
                  onEdit={handleEdit}
-                  onDelete={handleDelete}/>
+                  onDelete={handleDelete}
+                />
+
             )
         }
 

@@ -1,3 +1,4 @@
+import { ApiResponse } from "../../types/api-response";
 import type { Product } from "../../types/product"
 
 interface ProductDetailProps{
@@ -10,7 +11,7 @@ return(
 <div className="modal-overplay">
     <div className="modal">
         <h3>Chi tiết sản phẩm</h3>
-        <img src={product.productImageUrl} alt={product.productName} />
+        <img src={`${ApiResponse}${product.productImageUrl}`} alt={product.productName} />
         <p><b>Mã sản phẩm:</b>{product.productCode}</p>
         <p><b>Tên sản phẩm:</b>{product.productName}</p>
         <p><b>Loại sản phẩm:</b>{product.productType}</p>
@@ -18,7 +19,7 @@ return(
         <p><b>Năm sản xuất:</b>{product.productYear}</p>
         <p><b>Tồn kho:</b>{product.stockQuantity}</p>
 
-        <button onClick={onClose}>Cancel</button>
+        <button onClick={onClose} className="btn-cancel">Cancel</button>
     </div>
 </div>
 );

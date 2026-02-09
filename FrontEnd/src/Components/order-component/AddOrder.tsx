@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "../styles/add_order.css";
+import "../../styles/add_order.css";
 
 
 function AddOrder() {

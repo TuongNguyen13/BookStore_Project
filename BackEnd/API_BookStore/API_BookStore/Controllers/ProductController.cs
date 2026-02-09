@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using API_BookStore.Services;
 using API_BookStore.DTOs;
+using System.Web;
 
 namespace API_BookStore.Controllers
 {
@@ -17,9 +18,13 @@ namespace API_BookStore.Controllers
         }
 
         [HttpGet("get-product")]
-        public async Task<IActionResult> GetProduct()
+        public async Task<IActionResult> GetProduct(string ?productName, string ?productType, int pageNumber, int pageSize)
         {
-            var products = await _productService.GetAllProductsAsync();
+            string decodedProductName = productName != null ? HttpUtility.UrlDecode(productName) : null;
+            string decodedProductType = productType != null ? HttpUtility.UrlDecode(productType) : null;
+            int totalItems = await _productService.GetTotalProductsAsync(decodedProductName, decodedProductType);
+            int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+            var products = await _productService.GetAllProductsAsync(decodedProductName, decodedProductType,pageNumber, pageSize);
             if (products == null)
             {
                 return Ok(
@@ -33,7 +38,8 @@ namespace API_BookStore.Controllers
                 new
                 {
                     StatusCode = 1,
-                    Message = products
+                    Message = products,
+                    TotalPage = totalPages
                 });
         }
 
