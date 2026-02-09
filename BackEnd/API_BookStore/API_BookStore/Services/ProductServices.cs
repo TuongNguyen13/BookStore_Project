@@ -23,7 +23,8 @@ namespace API_BookStore.Services
         {
             try
             {
-                var productExist = await _context.Products.AnyAsync(p => p.ProductName == productDto.ProductName);
+                var sqlCheckProductExist = "SELECT COUNT(1) FROM Products WHERE ProductName = @ProductName";
+                var productExist = await _dbConnection.ExecuteScalarAsync<bool>(sqlCheckProductExist, new { ProductName = productDto.ProductName });
                 if (productExist)
                     return false;
 
@@ -128,11 +129,25 @@ namespace API_BookStore.Services
             return newProductCode;
         }
 
-        public async Task<List<Product?>> GetAllProductsAsync()
+        public async Task<List<Product?>> GetAllProductsAsync(string productName, string productType, int pageNumber, int pageSize)
         {
-            string sql = "SELECT * FROM Products";
-            var products = await _dbConnection.QueryAsync<Product>(sql);
+            string sql = "SELECT * FROM Products " +
+                "WHERE ProductName LIKE N'%" + productName + "%' " +
+                "AND ProductType LIKE N'%" + productType + "%'" + 
+                "ORDER BY ProductCode OFFSET @PageSize * (@PageNumber -1) ROWS " +
+                "FETCH NEXT @PageSize ROW ONLY";
+
+            var products = await _dbConnection.QueryAsync<Product>(sql, new {productName, productType, pageSize, pageNumber });
             return products.ToList();
+        }
+
+        public async Task<int> GetTotalProductsAsync(string productName,  string productType)
+        {
+            string sqlCount = "SELECT COUNT(1) FROM Products " +
+                "WHERE ProductName LIKE N'%" + productName + "%' " +
+                "AND ProductType LIKE N'%" + productType + "%'";
+            var count = await _dbConnection.ExecuteScalarAsync<int>(sqlCount);
+            return count;
         }
 
         public async Task<Product?> GetProductByCodeAsync(string productCode)

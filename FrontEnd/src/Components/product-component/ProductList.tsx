@@ -22,9 +22,6 @@ interface ProductListProps {
 }
 
 
-
-
-
 function ProductList({ products, onDelete, onEdit, onView }: ProductListProps) {
     return <div className="product-list">
         {products.map((product) => (

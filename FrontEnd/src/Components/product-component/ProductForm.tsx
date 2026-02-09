@@ -28,7 +28,7 @@ function ProductForm({ mode, product, onSubmit, onCancel }: ProductFormProps) {
     useEffect(() => {
         if (product) {
             setForm(product);
-           setPreview(`https://localhost:44315${product.productImageUrl}`);
+            setPreview(`https://localhost:44315${product.productImageUrl}`);
         } else {
             setForm(EmptyProduct);
             setPreview("");
@@ -41,7 +41,8 @@ function ProductForm({ mode, product, onSubmit, onCancel }: ProductFormProps) {
         setForm(prevForm => ({
             ...prevForm,
             [name]: name === 'price' || name === 'ProductYear' || name === 'stockQuantity' ?
-            Number(value) : value}));
+                Number(value) : value
+        }));
     };
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -124,8 +125,11 @@ function ProductForm({ mode, product, onSubmit, onCancel }: ProductFormProps) {
                         <img src={preview} alt="xem ảnh trước"
                             style={{ width: "100%", height: 150, objectFit: "cover" }} />
                     )}
-                    <button type="submit" className="btn-submit">{mode === "add" ? "Thêm " : "Cập nhật"}</button>
-                    <button className="btn-cancel" onClick={onCancel}>Cancel</button>
+                    <div className="btn-group">
+                        <button type="submit" className="btn-submit">{mode === "add" ? "Thêm " : "Cập nhật"}</button>
+                        <button className="btn-cancel" onClick={onCancel}>Cancel</button>
+                    </div>
+
                 </form>
             </div>
         </div>
